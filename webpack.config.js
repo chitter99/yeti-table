@@ -6,7 +6,8 @@ module.exports = {
     devtool: 'cheap-module-source-map',
     output: {
         path: resolve('dist'),
-        filename: 'yeti-table.js'
+        filename: 'yeti-table.js',
+		libraryTarget: 'umd'
     },
     module: {
         rules: [{
