@@ -1,1 +1,5 @@
 src
+media
+.babelrc
+tsconfig.json
+webpack.config.js
