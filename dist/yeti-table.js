@@ -1,1 +1,306 @@
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t(require("react"));else if("function"==typeof define&&define.amd)define(["react"],t);else{var n="object"==typeof exports?t(require("react")):t(e.react);for(var r in n)("object"==typeof exports?exports:e)[r]=n[r]}}(window,function(e){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=7)}([function(t,n){t.exports=e},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Column=function(e){return null}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(0);t.TCell=function(e){var t=e.row;return e.definition.accessor&&(t=function e(t,n){var r=n.indexOf(".");return r>-1?e(t[n.substring(0,r)],n.substring(r+1)):t[n]}(t,e.definition.accessor)),e.definition.getValue&&(t=e.definition.getValue(t)),r.createElement("td",{className:e.definition.className},e.definition.cell?r.createElement(e.definition.cell,{value:t}):t)}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(0),o=n(2);t.TRow=function(e){return r.createElement("tr",{className:e.config.styling.row},e.config.definition.map(function(t,n){return r.createElement(o.TCell,{key:n,definition:t,row:e.row})}))}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(0),o=n(3);t.TBody=function(e){return r.createElement("tbody",{className:e.config.styling.body},e.data.map(function(t,n){return r.createElement(o.TRow,{key:n,config:e.config,row:t})}))}},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(0);t.THead=function(e){return r.createElement("thead",{className:e.config.styling.header},r.createElement("tr",null,e.config.definition.map(function(t){return r.createElement("th",{className:e.config.styling.trow},t.header)})))}},function(e,t,n){"use strict";var r=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])};return function(t,n){function r(){this.constructor=t}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}();Object.defineProperty(t,"__esModule",{value:!0});var o=n(0),i=n(5),u=n(4),a=function(e){function t(){return null!==e&&e.apply(this,arguments)||this}return r(t,e),t.prototype.generateColumnDefinitions=function(){var e=[];return this.props.children.forEach(function(t){o.isValidElement(t)&&e.push(t.props)}),e},t.prototype.generateConfig=function(){return{definition:this.generateColumnDefinitions(),styling:{row:this.props.rowClassName,trow:this.props.trowClassName,header:this.props.headerClassName,body:this.props.bodyClassName}}},t.prototype.render=function(){var e=this.generateConfig();return o.createElement("table",{className:this.props.className},o.createElement(i.THead,{config:e}),o.createElement(u.TBody,{config:e,data:this.props.data}))},t}(o.Component);t.Table=a},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(6);t.Table=r.Table;var o=n(1);t.Column=o.Column}])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("react"));
+	else if(typeof define === 'function' && define.amd)
+		define(["react"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("react")) : factory(root["react"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function(__WEBPACK_EXTERNAL_MODULE_react__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/components/column.tsx":
+/*!***********************************!*\
+  !*** ./src/components/column.tsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Column = function (props) {
+    return null;
+};
+
+/***/ }),
+
+/***/ "./src/components/table.tsx":
+/*!**********************************!*\
+  !*** ./src/components/table.tsx ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var thead_1 = __webpack_require__(/*! ./thead */ "./src/components/thead.tsx");
+var tbody_1 = __webpack_require__(/*! ./tbody */ "./src/components/tbody.tsx");
+var Table = /** @class */function (_super) {
+    __extends(Table, _super);
+    function Table() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Table.prototype.generateColumnDefinitions = function () {
+        var def = [];
+        this.props.children.forEach(function (child) {
+            if (React.isValidElement(child)) {
+                def.push(child.props);
+            }
+        });
+        return def;
+    };
+    Table.prototype.generateConfig = function () {
+        return {
+            definition: this.generateColumnDefinitions(),
+            styling: {
+                row: this.props.rowClassName,
+                trow: this.props.trowClassName,
+                header: this.props.headerClassName,
+                body: this.props.bodyClassName
+            }
+        };
+    };
+    Table.prototype.render = function () {
+        var cof = this.generateConfig();
+        return React.createElement("table", { className: this.props.className }, React.createElement(thead_1.THead, { config: cof }), React.createElement(tbody_1.TBody, { config: cof, data: this.props.data }));
+    };
+    return Table;
+}(React.Component);
+exports.Table = Table;
+
+/***/ }),
+
+/***/ "./src/components/tbody.tsx":
+/*!**********************************!*\
+  !*** ./src/components/tbody.tsx ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var trow_1 = __webpack_require__(/*! ./trow */ "./src/components/trow.tsx");
+exports.TBody = function (props) {
+    return React.createElement("tbody", { className: props.config.styling.body }, props.data.map(function (row, i) {
+        return React.createElement(trow_1.TRow, { key: i, config: props.config, row: row });
+    }));
+};
+
+/***/ }),
+
+/***/ "./src/components/tcell.tsx":
+/*!**********************************!*\
+  !*** ./src/components/tcell.tsx ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+function fetch(obj, prop) {
+    var i = prop.indexOf('.');
+    if (i > -1) {
+        return fetch(obj[prop.substring(0, i)], prop.substring(i + 1));
+    }
+    return obj[prop];
+}
+exports.TCell = function (props) {
+    var value = props.row;
+    if (props.definition.accessor) {
+        value = fetch(value, props.definition.accessor);
+    }
+    if (props.definition.getValue) {
+        value = props.definition.getValue(value);
+    }
+    return React.createElement("td", { className: props.definition.className }, props.definition.cell ? React.createElement(props.definition.cell, { value: value }) : value);
+};
+
+/***/ }),
+
+/***/ "./src/components/thead.tsx":
+/*!**********************************!*\
+  !*** ./src/components/thead.tsx ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+exports.THead = function (props) {
+    return React.createElement("thead", { className: props.config.styling.header }, React.createElement("tr", null, props.config.definition.map(function (def) {
+        return React.createElement("th", { className: props.config.styling.trow }, def.header);
+    })));
+};
+
+/***/ }),
+
+/***/ "./src/components/trow.tsx":
+/*!*********************************!*\
+  !*** ./src/components/trow.tsx ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var tcell_1 = __webpack_require__(/*! ./tcell */ "./src/components/tcell.tsx");
+exports.TRow = function (props) {
+    return React.createElement("tr", { className: props.config.styling.row }, props.config.definition.map(function (cell, i) {
+        return React.createElement(tcell_1.TCell, { key: i, definition: cell, row: props.row });
+    }));
+};
+
+/***/ }),
+
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var table_1 = __webpack_require__(/*! ./components/table */ "./src/components/table.tsx");
+exports.Table = table_1.Table;
+var column_1 = __webpack_require__(/*! ./components/column */ "./src/components/column.tsx");
+exports.Column = column_1.Column;
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
+
+/***/ })
+
+/******/ });
+});
+//# sourceMappingURL=yeti-table.js.map

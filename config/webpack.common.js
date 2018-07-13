@@ -1,4 +1,5 @@
 const resolve = require('path').resolve;
+const TypescriptDeclarationPlugin = require('typescript-declaration-webpack-plugin');
 
 module.exports = {
     entry: resolve('src'),
@@ -25,5 +26,10 @@ module.exports = {
     },
     externals: {
         react: 'react'
-    }
+    },
+	plugins: [
+		new TypescriptDeclarationPlugin({
+			out: 'yeti-table.d.ts'
+		})
+	]
 };

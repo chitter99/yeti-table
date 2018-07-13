@@ -6,6 +6,7 @@
         "sourceMap": false,
         "outDir": "build",
         "jsx": "react",
+		"declaration": true,
         "lib": [
             "dom",
             "es5",
