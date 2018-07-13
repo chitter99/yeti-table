@@ -50,6 +50,7 @@ bodyClassName | string | Class of tbody elm. | | Null
 
 ## Columns
 Each Column is represented by a Column Element inside the Table Body.
+
 Prop | Type | Desc | Example | Default
 --- | --- | --- | --- | ---
 header | string | Name in the Table Header | `Name` | Required
