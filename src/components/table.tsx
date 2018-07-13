@@ -9,8 +9,8 @@ type TableProps = {
     className? : string
     rowClassName? : string
     trowClassName? : string 
-    headerClassName : string
-    bodyClassName : string
+    headerClassName? : string
+    bodyClassName? : string
 }
 
 export class Table extends React.Component<TableProps, any> {
