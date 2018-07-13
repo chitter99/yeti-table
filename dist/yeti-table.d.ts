@@ -14,7 +14,7 @@ export declare type CellProps = {
 export declare const Column: React.StatelessComponent<ColumnProps>;
 
 export declare type TableProps = {
-    children: Array<React.ReactChild>;
+    children?: Array<React.ReactChild>;
     data?: Array<any>;
     className?: string;
     rowClassName?: string;
