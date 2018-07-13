@@ -1,13 +1,14 @@
 import * as React from 'react';
+import { config } from '../model/config';
 
 type THeadProps = {
-    definition : Array<any>
+    config : config
 };
 
 export const THead : React.StatelessComponent<THeadProps> = (props) => {
-    return <thead>
+    return <thead className={ props.config.styling.header }>
         <tr>
-            { props.definition.map((def) => <th>{ def.header }</th>) }
+            { props.config.definition.map((def) => <th className={ props.config.styling.trow }>{ def.header }</th>) }
         </tr>
     </thead>;
 };

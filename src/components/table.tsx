@@ -1,16 +1,21 @@
 import * as React from 'react';
 import { THead } from './thead';
 import { TBody } from './tbody';
+import { config, definition } from '../model/config';
 
 type TableProps = {
+    children : Array<React.ReactChild>
     data? : Array<any>
     className? : string
-    children : Array<React.ReactChild>
+    rowClassName? : string
+    trowClassName? : string 
+    headerClassName : string
+    bodyClassName : string
 }
 
 export class Table extends React.Component<TableProps, any> {
 
-    generateColumnDefinitions() {
+    generateColumnDefinitions() : Array<definition> {
         let def = [];
         this.props.children.forEach((child) => {
             if(React.isValidElement(child)) {
@@ -20,11 +25,23 @@ export class Table extends React.Component<TableProps, any> {
         return def;
     }
 
+    generateConfig() : config {
+        return {
+            definition: this.generateColumnDefinitions(),
+            styling: {
+                row: this.props.rowClassName,
+                trow: this.props.trowClassName,
+                header: this.props.headerClassName,
+                body: this.props.bodyClassName
+            }
+        };
+    }
+
     render() {
-        let def = this.generateColumnDefinitions();
+        let cof = this.generateConfig();
         return <table className={ this.props.className }>
-            <THead definition={ def } />
-            <TBody definition={ def } data={ this.props.data } />
+            <THead config={ cof } />
+            <TBody config={ cof } data={ this.props.data } />
         </table>;
     }
 }

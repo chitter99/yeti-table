@@ -4,7 +4,7 @@ type ColumnProps = {
     header : string
     accessor? : string
     getValue? : (obj : any) => string
-    className? : string
+    className? : string | ((obj : any) => string)
     cell? : (props : CellProps) => JSX.Element
 }
 
