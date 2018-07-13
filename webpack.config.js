@@ -24,5 +24,8 @@ module.exports = {
             resolve('node_modules'),
             'node_modules'
         ]
+    },
+    externals: {
+        react: 'react'
     }
 };
