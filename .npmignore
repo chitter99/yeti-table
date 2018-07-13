@@ -2,4 +2,5 @@ src
 media
 .babelrc
 tsconfig.json
-webpack.config.js
+config
+dist/yeti-table.js.map

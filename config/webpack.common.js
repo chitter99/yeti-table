@@ -2,8 +2,6 @@ const resolve = require('path').resolve;
 
 module.exports = {
     entry: resolve('src'),
-    mode: 'development',
-    devtool: 'cheap-module-source-map',
     output: {
         path: resolve('dist'),
         filename: 'yeti-table.js',
@@ -18,7 +16,7 @@ module.exports = {
         }]
     },
     resolve: {
-        extensions: ['.jsx', '.tsx', '.js', '.ts', '.css'],
+        extensions: ['.jsx', '.tsx', '.js', '.ts'],
         descriptionFiles: ['package.json'],
         modules: [
             resolve('node_modules'),
