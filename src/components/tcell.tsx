@@ -7,6 +7,9 @@ type TCellProps = {
 
 function fetch(obj : any, prop : string) {
     let i = prop.indexOf('.');
+    if(!obj) {
+        return null;
+    }
     if(i > -1) {
         return fetch(obj[prop.substring(0, i)], prop.substring(i + 1));
     }
