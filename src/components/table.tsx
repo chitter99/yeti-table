@@ -4,7 +4,7 @@ import { TBody } from './tbody';
 import { config, definition } from '../model/config';
 
 type TableProps = {
-    children : Array<React.ReactChild>
+    children? : Array<React.ReactChild>
     data? : Array<any>
     className? : string
     rowClassName? : string
