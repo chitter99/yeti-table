@@ -36,4 +36,23 @@ ReactDOM.render(<App/>, document.getElementById("app"));
 ```
 ![Example Table](https://github.com/chitter99/yeti-table/blob/master/media/example-1.png?raw=true)
 
+# Configuration
 
+## Table
+Prop | Type | Desc | Example | Default
+--- | --- | --- | --- | ---
+data | `Array<any>` | Data of table | | Null
+className | string | Class of table elm. | | Null
+rowClassName | string | Class of tr elm. | | Null
+trowClassName | string | Class of th elm. | | Null
+headerClassName | string | Class of thead elm. | | Null
+bodyClassName | string | Class of tbody elm. | | Null
+
+## Columns
+Each Column is represented by a Column Element inside the Table Body.
+Prop | Type | Desc | Example | Default
+--- | --- | --- | --- | ---
+header | string | Name in the Table Header | `Name` | Required
+accessor | string | String accessor for navigating in the Data Object. Can contain `.`. | `employee.email` | Null
+getValue | callback `(obj : any) => string` | Callback to get Value of Cell. If no accessor set, obj is full Row. | `(row) => row.name` | Null
+cell | `React.StatelessComponent<CellProps>` | Cell Component. `props.value` contains accessor value or getValue result or full row. | | Null
