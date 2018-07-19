@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { TCell } from './tcell';
-import { config } from '../model/config';
+import { Config } from '../model/config';
 
 type TRowProps = {
-    config : config
+    config : Config
     row : any
 };
 

@@ -1,9 +1,19 @@
 import * as React from "react";
 /// <reference types="react" />
 
-export declare type ColumnProps = definition;
+export declare function fetchAccessor(obj: any, accessor: string): any;
+
+export declare type ColumnProps = {
+    header: string;
+    accessor?: string;
+    getValue?: (obj: any) => string;
+    className?: string | ((obj: any) => string);
+    cell?: (props: CellProps) => JSX.Element;
+    sort?: (a: any, b: any) => 1 | -1 | 0;
+};
 export declare type CellProps = {
     value: any;
+    row: any;
 };
 export declare const Column: React.StatelessComponent<ColumnProps>;
 
@@ -15,23 +25,24 @@ export declare type TableProps = {
     trowClassName?: string;
     headerClassName?: string;
     bodyClassName?: string;
+    sortable?: boolean;
 };
 export declare type TableState = {
-    sortColumn?: definition;
+    sortColumn?: Definition;
     sortDirection?: SortDirection;
 };
 export declare class Table extends React.Component<TableProps, TableState> {
     constructor(props: any);
-    generateColumnDefinitions(): Array<definition>;
-    generateConfig(): config;
-    sortColumn(column: definition): void;
+    generateColumnDefinitions(): Array<Definition>;
+    generateConfig(): Config;
+    sortColumn(column: Definition): void;
     render(): JSX.Element;
 }
 
 export declare type TBodyProps = {
-    config: config;
+    config: Config;
     data: Array<any>;
-    sortColumn?: definition;
+    sortColumn?: Definition;
     sortDirection?: SortDirection;
 };
 export declare const TBody: React.StatelessComponent<TBodyProps>;
@@ -43,30 +54,31 @@ export declare type TCellProps = {
 export declare const TCell: React.StatelessComponent<TCellProps>;
 
 export declare type THeadProps = {
-    config: config;
-    sortColumn: (column: definition) => void;
+    config: Config;
+    sortColumn: (column: Definition) => void;
 };
 export declare const THead: React.StatelessComponent<THeadProps>;
 
 export declare type TRowProps = {
-    config: config;
+    config: Config;
     row: any;
 };
 export declare const TRow: React.StatelessComponent<TRowProps>;
 
-export declare type config = {
-    definition: Array<definition>;
+export declare type Config = {
+    definition: Array<Definition>;
     styling: {
         row: string;
         trow: string;
         header: string;
         body: string;
     };
+    sortable: boolean;
 };
-export declare type definition = {
+export declare type Definition = {
     header: string;
     accessor?: string;
-    getValue?: (obj: any) => string;
+    getValue: (obj: any) => string;
     className?: string | ((obj: any) => string);
     cell?: (props: CellProps) => JSX.Element;
     sort?: (a: any, b: any) => 1 | -1 | 0;

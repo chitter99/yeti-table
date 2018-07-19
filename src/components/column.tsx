@@ -1,10 +1,18 @@
 import * as React from 'react';
-import { definition } from '../model/config';
+import { Definition } from '../model/config';
 
-type ColumnProps = definition;
+export type ColumnProps = {
+    header : string
+    accessor? : string
+    getValue? : (obj : any) => string
+    className? : string | ((obj : any) => string)
+    cell? : (props : CellProps) => JSX.Element
+    sort? : (a : any, b : any) => 1 | -1 | 0
+};
 
 export type CellProps = {
     value : any
+    row : any
 }
 
 export const Column : React.StatelessComponent<ColumnProps> = (props) => {

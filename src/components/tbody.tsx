@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { TRow } from './trow';
-import { config, definition } from '../model/config';
+import { Config, Definition } from '../model/config';
 import { SortDirection, SortAlgorithmEqual } from '../model/sort';
 
 type TBodyProps = {
-    config : config
+    config : Config
     data : Array<any>
-    sortColumn? : definition
+    sortColumn? : Definition
     sortDirection? : SortDirection
 };
 
@@ -18,7 +18,7 @@ export const TBody : React.StatelessComponent<TBodyProps> = (props) => {
         if(props.sortColumn.sort) {
             fn = props.sortColumn.sort;
         }
-        data = data.sort((a, b) => props.sortDirection * fn(a, b));
+        data = data.sort((a, b) => props.sortDirection * fn(props.sortColumn.getValue(a), props.sortColumn.getValue(b)));
     }
 
     return <tbody className={ props.config.styling.body }>

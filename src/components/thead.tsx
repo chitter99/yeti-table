@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { config, definition } from '../model/config';
+import { Config, Definition } from '../model/config';
 
 type THeadProps = {
-    config : config
-    sortColumn : (column : definition) => void
+    config : Config
+    sortColumn : (column : Definition) => void
 };
 
 export const THead : React.StatelessComponent<THeadProps> = (props) => {

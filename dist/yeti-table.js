@@ -144,6 +144,7 @@ var React = __webpack_require__(/*! react */ "react");
 var thead_1 = __webpack_require__(/*! ./thead */ "./src/components/thead.tsx");
 var tbody_1 = __webpack_require__(/*! ./tbody */ "./src/components/tbody.tsx");
 var sort_1 = __webpack_require__(/*! ../model/sort */ "./src/model/sort.ts");
+var util_1 = __webpack_require__(/*! ../util */ "./src/util.ts");
 var Table = /** @class */function (_super) {
     __extends(Table, _super);
     function Table(props) {
@@ -156,13 +157,31 @@ var Table = /** @class */function (_super) {
         return _this;
     }
     Table.prototype.generateColumnDefinitions = function () {
-        var def = [];
+        var defs = [];
         this.props.children.forEach(function (child) {
             if (React.isValidElement(child)) {
-                def.push(child.props);
+                var p_1 = child.props;
+                var def_1 = {
+                    header: p_1.header,
+                    accessor: p_1.accessor,
+                    getValue: function getValue(row) {
+                        var v = row;
+                        if (def_1.accessor) {
+                            v = util_1.fetchAccessor(row, def_1.accessor);
+                        }
+                        if (p_1.getValue) {
+                            v = p_1.getValue(v);
+                        }
+                        return v;
+                    },
+                    className: p_1.className,
+                    cell: p_1.cell,
+                    sort: p_1.sort
+                };
+                defs.push(def_1);
             }
         });
-        return def;
+        return defs;
     };
     Table.prototype.generateConfig = function () {
         return {
@@ -172,12 +191,13 @@ var Table = /** @class */function (_super) {
                 trow: this.props.trowClassName,
                 header: this.props.headerClassName,
                 body: this.props.bodyClassName
-            }
+            },
+            sortable: this.props.sortable ? this.props.sortable : false
         };
     };
     Table.prototype.sortColumn = function (column) {
         var direction = sort_1.SortDirection.ASC;
-        if (this.state.sortColumn == column) {
+        if (this.state.sortColumn && this.state.sortColumn.header == column.header) {
             direction = this.state.sortDirection * -1;
         }
         this.setState({
@@ -208,11 +228,16 @@ exports.Table = Table;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
 var trow_1 = __webpack_require__(/*! ./trow */ "./src/components/trow.tsx");
+var sort_1 = __webpack_require__(/*! ../model/sort */ "./src/model/sort.ts");
 exports.TBody = function (props) {
     var data = props.data;
-    if (props.sortColumn && props.sortColumn.sort) {
+    if (props.sortColumn) {
+        var fn_1 = sort_1.SortAlgorithmEqual;
+        if (props.sortColumn.sort) {
+            fn_1 = props.sortColumn.sort;
+        }
         data = data.sort(function (a, b) {
-            return props.sortDirection * props.sortColumn.sort(a, b);
+            return props.sortDirection * fn_1(props.sortColumn.getValue(a), props.sortColumn.getValue(b));
         });
     }
     return React.createElement("tbody", { className: props.config.styling.body }, props.data.map(function (row, i) {
@@ -234,25 +259,9 @@ exports.TBody = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-function fetch(obj, prop) {
-    var i = prop.indexOf('.');
-    if (!obj) {
-        return null;
-    }
-    if (i > -1) {
-        return fetch(obj[prop.substring(0, i)], prop.substring(i + 1));
-    }
-    return obj[prop];
-}
 exports.TCell = function (props) {
-    var value = props.row;
-    if (props.definition.accessor) {
-        value = fetch(value, props.definition.accessor);
-    }
-    if (props.definition.getValue) {
-        value = props.definition.getValue(value);
-    }
-    return React.createElement("td", { className: props.definition.className }, props.definition.cell ? React.createElement(props.definition.cell, { value: value }) : value);
+    var value = props.definition.getValue(props.row);
+    return React.createElement("td", { className: props.definition.className }, props.definition.cell ? React.createElement(props.definition.cell, { value: value, row: props.row }) : value);
 };
 
 /***/ }),
@@ -337,6 +346,31 @@ var SortDirection;
 exports.SortAlgorithmEqual = function (r1, r2) {
     return r1 == r2 ? 0 : r1 < r2 ? 1 : -1;
 };
+
+/***/ }),
+
+/***/ "./src/util.ts":
+/*!*********************!*\
+  !*** ./src/util.ts ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function fetchAccessor(obj, accessor) {
+    var i = accessor.indexOf('.');
+    if (!obj) {
+        return null;
+    }
+    if (i > -1) {
+        return fetchAccessor(obj[accessor.substring(0, i)], accessor.substring(i + 1));
+    }
+    return obj[accessor];
+}
+exports.fetchAccessor = fetchAccessor;
 
 /***/ }),
 

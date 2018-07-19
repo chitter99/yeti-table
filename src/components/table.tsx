@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { THead } from './thead';
 import { TBody } from './tbody';
-import { config, definition } from '../model/config';
+import { Config, Definition } from '../model/config';
 import { SortDirection } from '../model/sort';
+import { fetchAccessor } from '../util';
+import { ColumnProps } from './column';
 
 type TableProps = {
     children? : Array<React.ReactChild>
@@ -16,7 +18,7 @@ type TableProps = {
 }
 
 type TableState = {
-    sortColumn? : definition
+    sortColumn? : Definition
     sortDirection? : SortDirection
 }
 
@@ -30,17 +32,35 @@ export class Table extends React.Component<TableProps, TableState> {
         this.sortColumn = this.sortColumn.bind(this);
     }
 
-    generateColumnDefinitions() : Array<definition> {
-        let def = [];
+    generateColumnDefinitions() : Array<Definition> {
+        let defs = [];
         this.props.children.forEach((child) => {
             if(React.isValidElement(child)) {
-                def.push(child.props);
+                let p = child.props as ColumnProps;
+                let def = {
+                    header: p.header,
+                    accessor: p.accessor,
+                    getValue: (row) => {
+                        let v = row;
+                        if(def.accessor) {
+                            v = fetchAccessor(row, def.accessor);
+                        }
+                        if(p.getValue) {
+                            v = p.getValue(v);
+                        }
+                        return v;
+                    },
+                    className: p.className,
+                    cell: p.cell,
+                    sort: p.sort
+                };
+                defs.push(def);
             }
         });
-        return def;
+        return defs;
     }
 
-    generateConfig() : config {
+    generateConfig() : Config {
         return {
             definition: this.generateColumnDefinitions(),
             styling: {
@@ -53,9 +73,9 @@ export class Table extends React.Component<TableProps, TableState> {
         };
     }
 
-    sortColumn(column : definition) {
+    sortColumn(column : Definition) {
         let direction = SortDirection.ASC;
-        if(this.state.sortColumn == column) {
+        if(this.state.sortColumn && this.state.sortColumn.header == column.header) {
             direction = this.state.sortDirection * -1;
         }
         this.setState({

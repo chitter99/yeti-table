@@ -5,26 +5,9 @@ type TCellProps = {
     row : any
 };
 
-function fetch(obj : any, prop : string) {
-    let i = prop.indexOf('.');
-    if(!obj) {
-        return null;
-    }
-    if(i > -1) {
-        return fetch(obj[prop.substring(0, i)], prop.substring(i + 1));
-    }
-    return obj[prop];
-}
-
 export const TCell : React.StatelessComponent<TCellProps> = (props) => {
-    let value = props.row;
-    if(props.definition.accessor) {
-        value = fetch(value, props.definition.accessor);
-    }
-    if(props.definition.getValue) {
-        value = props.definition.getValue(value);
-    }
+    let value = props.definition.getValue(props.row);
     return <td className={ props.definition.className }>
-        { props.definition.cell ? React.createElement(props.definition.cell, { value: value }) : value }
+        { props.definition.cell ? React.createElement(props.definition.cell, { value: value, row: props.row }) : value }
     </td>;
 };
