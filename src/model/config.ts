@@ -8,6 +8,7 @@ export type config = {
         header : string
         body : string
     }
+    sortable : boolean
 };
 
 export type definition = {
@@ -16,4 +17,5 @@ export type definition = {
     getValue? : (obj : any) => string
     className? : string | ((obj : any) => string)
     cell? : (props : CellProps) => JSX.Element
+    sort? : (a : any, b : any) => 1 | -1 | 0
 };

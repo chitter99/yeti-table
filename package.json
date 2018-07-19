@@ -5,7 +5,7 @@
   "main": "dist/yeti-table.js",
   "scripts": {
     "build": "webpack --config config/webpack.prod.js",
-    "dev": "webpack --config config/webpack.dev.js"
+    "dev": "webpack --config config/webpack.dev.js && dev-after-build.bat"
   },
   "author": "chitter99 <aaron.schmid@outlook.com> (http://aaronschmid.ch)",
   "license": "GPL-3.0",

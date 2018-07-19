@@ -1,12 +1,7 @@
 import * as React from 'react';
+import { definition } from '../model/config';
 
-type ColumnProps = {
-    header : string
-    accessor? : string
-    getValue? : (obj : any) => string
-    className? : string | ((obj : any) => string)
-    cell? : (props : CellProps) => JSX.Element
-}
+type ColumnProps = definition;
 
 export type CellProps = {
     value : any

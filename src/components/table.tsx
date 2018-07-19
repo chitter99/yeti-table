@@ -2,6 +2,7 @@ import * as React from 'react';
 import { THead } from './thead';
 import { TBody } from './tbody';
 import { config, definition } from '../model/config';
+import { SortDirection } from '../model/sort';
 
 type TableProps = {
     children? : Array<React.ReactChild>
@@ -11,9 +12,23 @@ type TableProps = {
     trowClassName? : string 
     headerClassName? : string
     bodyClassName? : string
+    sortable? : boolean
 }
 
-export class Table extends React.Component<TableProps, any> {
+type TableState = {
+    sortColumn? : definition
+    sortDirection? : SortDirection
+}
+
+export class Table extends React.Component<TableProps, TableState> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sortColumn: null,
+            sortDirection: null
+        };
+        this.sortColumn = this.sortColumn.bind(this);
+    }
 
     generateColumnDefinitions() : Array<definition> {
         let def = [];
@@ -33,15 +48,27 @@ export class Table extends React.Component<TableProps, any> {
                 trow: this.props.trowClassName,
                 header: this.props.headerClassName,
                 body: this.props.bodyClassName
-            }
+            },
+            sortable: this.props.sortable ? this.props.sortable : false
         };
     }
 
+    sortColumn(column : definition) {
+        let direction = SortDirection.ASC;
+        if(this.state.sortColumn == column) {
+            direction = this.state.sortDirection * -1;
+        }
+        this.setState({
+            sortColumn: column,
+            sortDirection: direction          
+        });
+    }
+    
     render() {
         let cof = this.generateConfig();
         return <table className={ this.props.className }>
-            <THead config={ cof } />
-            <TBody config={ cof } data={ this.props.data } />
+            <THead config={ cof } sortColumn={ this.sortColumn } />
+            <TBody config={ cof } data={ this.props.data } sortColumn={ this.state.sortColumn } sortDirection={ this.state.sortDirection } />
         </table>;
     }
 }

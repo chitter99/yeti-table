@@ -18,7 +18,7 @@ const AddressCell : React.StatelessComponent<CellProps> = (props) => <span>
 </span>;
 
 const App : React.StatelessComponent<any> = (props) => <div>
-    <Table data={ data }>
+    <Table data={ data } sortable={ true }>
         <Column 
             header='Name'
             accessor='name' />
@@ -47,6 +47,7 @@ rowClassName | string | Class of tr elm. | | Null
 trowClassName | string | Class of th elm. | | Null
 headerClassName | string | Class of thead elm. | | Null
 bodyClassName | string | Class of tbody elm. | | Null
+sortable | boolean | Is Table sortable. When True Table can be sorted after every Column | | `false`
 
 ## Columns
 Each Column is represented by a Column Element inside the Table Body.
@@ -57,6 +58,7 @@ header | string | Name in the Table Header | `Name` | Required
 accessor | string | String accessor for navigating in the Data Object. Can contain `.`. | `employee.email` | Null
 getValue | callback `(obj : any) => string` | Callback to get Value of Cell. If no accessor set, obj is full Row. | `(row) => row.name` | Null
 cell | `React.StatelessComponent<CellProps>` | Cell Component. `props.value` contains accessor value or getValue result or full row. | | Null
+sort | `(a, b) => 1 | -1 | 0` | Custom callback for sorting. 1: a > b -1: a < b 0: a = b | | Null
 
 # Installation 
 

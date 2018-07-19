@@ -1,13 +1,7 @@
 import * as React from "react";
 /// <reference types="react" />
 
-export declare type ColumnProps = {
-    header: string;
-    accessor?: string;
-    getValue?: (obj: any) => string;
-    className?: string | ((obj: any) => string);
-    cell?: (props: CellProps) => JSX.Element;
-};
+export declare type ColumnProps = definition;
 export declare type CellProps = {
     value: any;
 };
@@ -19,18 +13,26 @@ export declare type TableProps = {
     className?: string;
     rowClassName?: string;
     trowClassName?: string;
-    headerClassName: string;
-    bodyClassName: string;
+    headerClassName?: string;
+    bodyClassName?: string;
 };
-export declare class Table extends React.Component<TableProps, any> {
+export declare type TableState = {
+    sortColumn?: definition;
+    sortDirection?: SortDirection;
+};
+export declare class Table extends React.Component<TableProps, TableState> {
+    constructor(props: any);
     generateColumnDefinitions(): Array<definition>;
     generateConfig(): config;
+    sortColumn(column: definition): void;
     render(): JSX.Element;
 }
 
 export declare type TBodyProps = {
     config: config;
     data: Array<any>;
+    sortColumn?: definition;
+    sortDirection?: SortDirection;
 };
 export declare const TBody: React.StatelessComponent<TBodyProps>;
 
@@ -42,6 +44,7 @@ export declare const TCell: React.StatelessComponent<TCellProps>;
 
 export declare type THeadProps = {
     config: config;
+    sortColumn: (column: definition) => void;
 };
 export declare const THead: React.StatelessComponent<THeadProps>;
 
@@ -66,4 +69,11 @@ export declare type definition = {
     getValue?: (obj: any) => string;
     className?: string | ((obj: any) => string);
     cell?: (props: CellProps) => JSX.Element;
+    sort?: (a: any, b: any) => 1 | -1 | 0;
 };
+
+export declare enum SortDirection {
+    ASC = 1,
+    DESC = -1
+}
+export declare const SortAlgorithmEqual: (r1: any, r2: any) => 1 | -1 | 0;
