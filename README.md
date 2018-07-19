@@ -58,7 +58,7 @@ header | string | Name in the Table Header | `Name` | Required
 accessor | string | String accessor for navigating in the Data Object. Can contain `.`. | `employee.email` | Null
 getValue | callback `(obj : any) => string` | Callback to get Value of Cell. If no accessor set, obj is full Row. | `(row) => row.name` | Null
 cell | `React.StatelessComponent<CellProps>` | Cell Component. `props.value` contains accessor value or getValue result or full row. | | Null
-sort | `(a, b) => 1 | -1 | 0` | Custom callback for sorting. 1: a > b -1: a < b 0: a = b | | Null
+sort | `(a, b) => Number` | Custom callback for sorting. 1: a > b -1: a < b 0: a = b | | Null
 
 # Installation 
 
