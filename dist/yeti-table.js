@@ -279,8 +279,8 @@ exports.TCell = function (props) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
 exports.THead = function (props) {
-    return React.createElement("thead", { className: props.config.styling.header }, React.createElement("tr", null, props.config.definition.map(function (def) {
-        return React.createElement("th", { className: props.config.styling.trow, onClick: function onClick() {
+    return React.createElement("thead", { className: props.config.styling.header }, React.createElement("tr", null, props.config.definition.map(function (def, i) {
+        return React.createElement("th", { key: i, className: props.config.styling.trow, onClick: function onClick() {
                 return props.sortColumn(def);
             } }, def.header);
     })));

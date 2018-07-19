@@ -9,7 +9,7 @@ type THeadProps = {
 export const THead : React.StatelessComponent<THeadProps> = (props) => {
     return <thead className={ props.config.styling.header }>
         <tr>
-            { props.config.definition.map((def) => <th className={ props.config.styling.trow } onClick={ () => props.sortColumn(def) }>{ def.header }</th>) }
+            { props.config.definition.map((def, i) => <th key={ i } className={ props.config.styling.trow } onClick={ () => props.sortColumn(def) }>{ def.header }</th>) }
         </tr>
     </thead>;
 };
