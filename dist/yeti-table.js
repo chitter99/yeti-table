@@ -176,7 +176,8 @@ var Table = /** @class */function (_super) {
                     },
                     className: p_1.className,
                     cell: p_1.cell,
-                    sort: p_1.sort
+                    sort: p_1.sort,
+                    sortable: p_1.sortable
                 };
                 defs.push(def_1);
             }
@@ -279,9 +280,14 @@ exports.TCell = function (props) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
 exports.THead = function (props) {
+    function _onClick(def) {
+        if (def.sortable === null || def.sortable != false) {
+            props.sortColumn(def);
+        }
+    }
     return React.createElement("thead", { className: props.config.styling.header }, React.createElement("tr", null, props.config.definition.map(function (def, i) {
         return React.createElement("th", { key: i, className: props.config.styling.trow, onClick: function onClick() {
-                return props.sortColumn(def);
+                return _onClick(def);
             } }, def.header);
     })));
 };

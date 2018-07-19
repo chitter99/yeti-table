@@ -52,7 +52,8 @@ export class Table extends React.Component<TableProps, TableState> {
                     },
                     className: p.className,
                     cell: p.cell,
-                    sort: p.sort
+                    sort: p.sort,
+                    sortable: p.sortable
                 };
                 defs.push(def);
             }

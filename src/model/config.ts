@@ -18,4 +18,5 @@ export type Definition = {
     className? : string | ((obj : any) => string)
     cell? : (props : CellProps) => JSX.Element
     sort? : (a : any, b : any) => 1 | -1 | 0
+    sortable? : boolean
 };
