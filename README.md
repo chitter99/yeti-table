@@ -57,3 +57,17 @@ header | string | Name in the Table Header | `Name` | Required
 accessor | string | String accessor for navigating in the Data Object. Can contain `.`. | `employee.email` | Null
 getValue | callback `(obj : any) => string` | Callback to get Value of Cell. If no accessor set, obj is full Row. | `(row) => row.name` | Null
 cell | `React.StatelessComponent<CellProps>` | Cell Component. `props.value` contains accessor value or getValue result or full row. | | Null
+
+# Installation 
+
+## Via Npm
+```
+$ npm i -s yeti-table
+```
+Then
+```javascript
+// ES6
+import { Table, Column } from 'yeti-table';
+// ES5
+var YetiTable = require('yeti-table');
+```
