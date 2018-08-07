@@ -5,7 +5,6 @@ import { Config, Definition } from '../model/config';
 import { SortDirection } from '../model/sort';
 import { fetchAccessor } from '../util';
 import { ColumnProps } from './column';
-import { FilterParameter } from '../model/filter';
 
 type TableProps = {
     children? : Array<React.ReactChild>

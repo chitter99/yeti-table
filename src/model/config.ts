@@ -1,4 +1,3 @@
-import { CellProps } from './../components/column';
 
 export type Config = {
     definition : Array<Definition>
@@ -20,3 +19,8 @@ export type Definition = {
     sort? : (a : any, b : any) => 1 | -1 | 0
     sortable? : boolean
 };
+
+export type CellProps = {
+    value : any
+    row : any
+}

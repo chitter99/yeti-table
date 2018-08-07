@@ -1,2 +1,3 @@
 export { Table } from './components/table';
-export { Column, CellProps } from './components/column';
+export { Column } from './components/column';
+export { CellProps } from './model/config';  

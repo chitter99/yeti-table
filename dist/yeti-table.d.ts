@@ -3,19 +3,7 @@ import * as React from "react";
 
 export declare function fetchAccessor(obj: any, accessor: string): any;
 
-export declare type ColumnProps = {
-    header: string;
-    accessor?: string;
-    getValue?: (obj: any) => string;
-    className?: string | ((obj: any) => string);
-    cell?: (props: CellProps) => JSX.Element;
-    sort?: (a: any, b: any) => 1 | -1 | 0;
-    sortable?: boolean;
-};
-export declare type CellProps = {
-    value: any;
-    row: any;
-};
+export declare type ColumnProps = Definition;
 export declare const Column: React.StatelessComponent<ColumnProps>;
 
 export declare type TableProps = {
@@ -87,8 +75,10 @@ export declare type Definition = {
     sort?: (a: any, b: any) => 1 | -1 | 0;
     sortable?: boolean;
 };
-
-export declare type FilterParameter = {};
+export declare type CellProps = {
+    value: any;
+    row: any;
+};
 
 export declare enum SortDirection {
     ASC = 1,
