@@ -55,7 +55,8 @@ rowClassName | `String` | Class of tr elm. | `null`
 trowClassName | `String` | Class of th elm. | `null` 
 headerClassName | `String` | Class of thead elm. | `null` 
 bodyClassName | `String` | Class of tbody elm.| `null` 
-sortable | `Boolean` | Is Table sortable. When True Table can be sorted after every Column | `false` 
+sortable | `Boolean` | Is Table sortable. When True Table can be sorted after every Column | `false`
+filterFn | `(row) => Boolean` | Only Rows which return true will be shown in Table | `null`
  
 ## Columns
 Each Column is represented by a Column Element inside the Table Body.
@@ -89,6 +90,7 @@ var YetiTable = require('yeti-table');
 - [X] Sortable with custom algorithm.
 - [ ] Customizable indicator for sort.
 - [ ] Data from remote URL. Request Data automaticly from Backend.
+- [X] Filter data with function.
 - [ ] Filter data with props.
 - [ ] Filter data with custom form.
 - [ ] Filter in comination with remote URL. Remote filtering with Query Parameter. 
