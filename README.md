@@ -3,8 +3,9 @@
 Simple Table Component for React
 
 # Features
-* Filters (Client side)
-* Fully customizable with Props
+* Display Values like you want, even add behavior to it or just use an string accessor
+* Sort with default or custom Algorithms
+* Fully customizable with Props and Callbacks
 * Easy and fast Table Markup
 
 # Example
@@ -80,3 +81,17 @@ import { Table, Column } from 'yeti-table';
 // ES5
 var YetiTable = require('yeti-table');
 ```
+
+# Planned Features
+- [X] Sortable with equal algorithm.
+- [X] Sortable with custom algorithm.
+- [ ] Customizable indicator for sort.
+- [ ] Data from remote URL. Request Data automaticly from Backend.
+- [ ] Filter data with custom form. (Clientside Filtering)
+- [ ] Filter data with custom form. (Query Parameter with Backend)
+- [ ] Plugin System
+
+## Plugin System
+- [ ] Plugins can replace or add to individual components.
+- [ ] Plugins can hook on events with callbacks.
+- [ ] User can use individual components from Plugins to replace specific components. (Similar to current cell system)
