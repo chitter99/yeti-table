@@ -5,6 +5,7 @@ import { Config, Definition } from '../model/config';
 import { SortDirection } from '../model/sort';
 import { fetchAccessor } from '../util';
 import { ColumnProps } from './column';
+import { FilterParameter } from '../model/filter';
 
 type TableProps = {
     children? : Array<React.ReactChild>
@@ -15,6 +16,7 @@ type TableProps = {
     headerClassName? : string
     bodyClassName? : string
     sortable? : boolean
+    filterFn? : (row) => boolean
 }
 
 type TableState = {
@@ -89,7 +91,7 @@ export class Table extends React.Component<TableProps, TableState> {
         let cof = this.generateConfig();
         return <table className={ this.props.className }>
             <THead config={ cof } sortColumn={ this.sortColumn } />
-            <TBody config={ cof } data={ this.props.data } sortColumn={ this.state.sortColumn } sortDirection={ this.state.sortDirection } />
+            <TBody config={ cof } data={ this.props.data } sortColumn={ this.state.sortColumn } sortDirection={ this.state.sortDirection } filterFn={ this.props.filterFn } />
         </table>;
     }
 }

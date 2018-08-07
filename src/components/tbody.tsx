@@ -8,10 +8,21 @@ type TBodyProps = {
     data : Array<any>
     sortColumn? : Definition
     sortDirection? : SortDirection
+    filterFn? : (row) => boolean
 };
 
 export const TBody : React.StatelessComponent<TBodyProps> = (props) => {
     let data = props.data;
+
+    if(props.filterFn) {
+        let filteredData = [];
+        data.forEach((row) => {
+            if(props.filterFn(row)) {
+                filteredData.push(row);
+            }
+        });
+        data = filteredData;
+    }
 
     if(props.sortColumn) {
         let fn = SortAlgorithmEqual;
@@ -22,6 +33,6 @@ export const TBody : React.StatelessComponent<TBodyProps> = (props) => {
     }
 
     return <tbody className={ props.config.styling.body }>
-        { props.data.map((row, i) => <TRow key={ i } config={ props.config } row={ row }  />) }
+        { data.map((row, i) => <TRow key={ i } config={ props.config } row={ row }  />) }
     </tbody>;
 };

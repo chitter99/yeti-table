@@ -27,6 +27,7 @@ export declare type TableProps = {
     headerClassName?: string;
     bodyClassName?: string;
     sortable?: boolean;
+    filterFn?: (row: any) => boolean;
 };
 export declare type TableState = {
     sortColumn?: Definition;
@@ -45,6 +46,7 @@ export declare type TBodyProps = {
     data: Array<any>;
     sortColumn?: Definition;
     sortDirection?: SortDirection;
+    filterFn?: (row: any) => boolean;
 };
 export declare const TBody: React.StatelessComponent<TBodyProps>;
 
@@ -85,6 +87,8 @@ export declare type Definition = {
     sort?: (a: any, b: any) => 1 | -1 | 0;
     sortable?: boolean;
 };
+
+export declare type FilterParameter = {};
 
 export declare enum SortDirection {
     ASC = 1,
