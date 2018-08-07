@@ -1,4 +1,5 @@
-# yeti-table
+![Yeti Table](https://github.com/chitter99/yeti-table/blob/master/media/yeti-table-logo.png?raw=true)
+
 Simple Table Component for React
 
 # Example
