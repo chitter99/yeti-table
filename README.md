@@ -3,10 +3,11 @@
 Simple Table Component for React
 
 # Features
-* Display Values like you want, even add behavior to it or just use an string accessor
-* Sort with default or custom Algorithms
-* Fully customizable with Props and Callbacks
+* **Display Values like you want**, even add behavior to it or just use an string accessor
+* **Sort** with default or custom Algorithms
+* **Fully customizable** with Props and Callbacks
 * Easy and fast Table Markup
+* **Light** in filesize, current build is only **5kb** small 
 
 # Example
 ```javascript
@@ -83,6 +84,7 @@ var YetiTable = require('yeti-table');
 ```
 
 # Planned Features
+- [ ] Responsive styling.
 - [X] Sortable with equal algorithm.
 - [X] Sortable with custom algorithm.
 - [ ] Customizable indicator for sort.
