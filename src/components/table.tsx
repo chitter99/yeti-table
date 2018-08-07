@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { THead } from './thead';
-import { TBody } from './tbody';
+import { TableHeader } from './tableHeader';
+import { TableBody } from './tableBody';
 import { Config, Definition } from '../model/config';
 import { SortDirection } from '../model/sort';
 import { fetchAccessor } from '../util';
@@ -89,8 +89,8 @@ export class Table extends React.Component<TableProps, TableState> {
     render() {
         let cof = this.generateConfig();
         return <table className={ this.props.className }>
-            <THead config={ cof } sortColumn={ this.sortColumn } />
-            <TBody config={ cof } data={ this.props.data } sortColumn={ this.state.sortColumn } sortDirection={ this.state.sortDirection } filterFn={ this.props.filterFn } />
+            <TableHeader config={ cof } sortColumn={ this.sortColumn } />
+            <TableBody config={ cof } data={ this.props.data } sortColumn={ this.state.sortColumn } sortDirection={ this.state.sortDirection } filterFn={ this.props.filterFn } />
         </table>;
     }
 }

@@ -141,8 +141,8 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-var thead_1 = __webpack_require__(/*! ./thead */ "./src/components/thead.tsx");
-var tbody_1 = __webpack_require__(/*! ./tbody */ "./src/components/tbody.tsx");
+var tableHeader_1 = __webpack_require__(/*! ./tableHeader */ "./src/components/tableHeader.tsx");
+var tableBody_1 = __webpack_require__(/*! ./tableBody */ "./src/components/tableBody.tsx");
 var sort_1 = __webpack_require__(/*! ../model/sort */ "./src/model/sort.ts");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.ts");
 var Table = /** @class */function (_super) {
@@ -208,7 +208,7 @@ var Table = /** @class */function (_super) {
     };
     Table.prototype.render = function () {
         var cof = this.generateConfig();
-        return React.createElement("table", { className: this.props.className }, React.createElement(thead_1.THead, { config: cof, sortColumn: this.sortColumn }), React.createElement(tbody_1.TBody, { config: cof, data: this.props.data, sortColumn: this.state.sortColumn, sortDirection: this.state.sortDirection, filterFn: this.props.filterFn }));
+        return React.createElement("table", { className: this.props.className }, React.createElement(tableHeader_1.TableHeader, { config: cof, sortColumn: this.sortColumn }), React.createElement(tableBody_1.TableBody, { config: cof, data: this.props.data, sortColumn: this.state.sortColumn, sortDirection: this.state.sortDirection, filterFn: this.props.filterFn }));
     };
     return Table;
 }(React.Component);
@@ -216,10 +216,10 @@ exports.Table = Table;
 
 /***/ }),
 
-/***/ "./src/components/tbody.tsx":
-/*!**********************************!*\
-  !*** ./src/components/tbody.tsx ***!
-  \**********************************/
+/***/ "./src/components/tableBody.tsx":
+/*!**************************************!*\
+  !*** ./src/components/tableBody.tsx ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -228,9 +228,9 @@ exports.Table = Table;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-var trow_1 = __webpack_require__(/*! ./trow */ "./src/components/trow.tsx");
+var tableRow_1 = __webpack_require__(/*! ./tableRow */ "./src/components/tableRow.tsx");
 var sort_1 = __webpack_require__(/*! ../model/sort */ "./src/model/sort.ts");
-exports.TBody = function (props) {
+exports.TableBody = function (props) {
     var data = props.data;
     if (props.filterFn) {
         var filteredData_1 = [];
@@ -251,16 +251,16 @@ exports.TBody = function (props) {
         });
     }
     return React.createElement("tbody", { className: props.config.styling.body }, data.map(function (row, i) {
-        return React.createElement(trow_1.TRow, { key: i, config: props.config, row: row });
+        return React.createElement(tableRow_1.TableRow, { key: i, config: props.config, row: row });
     }));
 };
 
 /***/ }),
 
-/***/ "./src/components/tcell.tsx":
-/*!**********************************!*\
-  !*** ./src/components/tcell.tsx ***!
-  \**********************************/
+/***/ "./src/components/tableColumn.tsx":
+/*!****************************************!*\
+  !*** ./src/components/tableColumn.tsx ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -269,17 +269,17 @@ exports.TBody = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-exports.TCell = function (props) {
+exports.TableColumn = function (props) {
     var value = props.definition.getValue(props.row);
     return React.createElement("td", { className: props.definition.className }, props.definition.cell ? React.createElement(props.definition.cell, { value: value, row: props.row }) : value);
 };
 
 /***/ }),
 
-/***/ "./src/components/thead.tsx":
-/*!**********************************!*\
-  !*** ./src/components/thead.tsx ***!
-  \**********************************/
+/***/ "./src/components/tableHeader.tsx":
+/*!****************************************!*\
+  !*** ./src/components/tableHeader.tsx ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -288,7 +288,7 @@ exports.TCell = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-exports.THead = function (props) {
+exports.TableHeader = function (props) {
     function _onClick(def) {
         if (def.sortable === null || def.sortable != false) {
             props.sortColumn(def);
@@ -303,10 +303,10 @@ exports.THead = function (props) {
 
 /***/ }),
 
-/***/ "./src/components/trow.tsx":
-/*!*********************************!*\
-  !*** ./src/components/trow.tsx ***!
-  \*********************************/
+/***/ "./src/components/tableRow.tsx":
+/*!*************************************!*\
+  !*** ./src/components/tableRow.tsx ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -315,10 +315,10 @@ exports.THead = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-var tcell_1 = __webpack_require__(/*! ./tcell */ "./src/components/tcell.tsx");
-exports.TRow = function (props) {
+var tableColumn_1 = __webpack_require__(/*! ./tableColumn */ "./src/components/tableColumn.tsx");
+exports.TableRow = function (props) {
     return React.createElement("tr", { className: props.config.styling.row }, props.config.definition.map(function (cell, i) {
-        return React.createElement(tcell_1.TCell, { key: i, definition: cell, row: props.row });
+        return React.createElement(tableColumn_1.TableColumn, { key: i, definition: cell, row: props.row });
     }));
 };
 

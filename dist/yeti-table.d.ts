@@ -36,25 +36,26 @@ export declare type TBodyProps = {
     sortDirection?: SortDirection;
     filterFn?: (row: any) => boolean;
 };
-export declare const TBody: React.StatelessComponent<TBodyProps>;
+export declare const TableBody: React.StatelessComponent<TBodyProps>;
 
-export declare type TCellProps = {
+
+export declare type TableColumnProps = {
     definition: any;
     row: any;
 };
-export declare const TCell: React.StatelessComponent<TCellProps>;
+export declare const TableColumn: React.StatelessComponent<TableColumnProps>;
 
-export declare type THeadProps = {
+export declare type TableHeaderProps = {
     config: Config;
     sortColumn: (column: Definition) => void;
 };
-export declare const THead: React.StatelessComponent<THeadProps>;
+export declare const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
-export declare type TRowProps = {
+export declare type TableRowProps = {
     config: Config;
     row: any;
 };
-export declare const TRow: React.StatelessComponent<TRowProps>;
+export declare const TableRow: React.StatelessComponent<TableRowProps>;
 
 export declare type Config = {
     definition: Array<Definition>;
@@ -69,7 +70,7 @@ export declare type Config = {
 export declare type Definition = {
     header: string;
     accessor?: string;
-    getValue: (obj: any) => string;
+    getValue?: (obj: any) => string;
     className?: string | ((obj: any) => string);
     cell?: (props: CellProps) => JSX.Element;
     sort?: (a: any, b: any) => 1 | -1 | 0;

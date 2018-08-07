@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Config, Definition } from '../model/config';
 
-type THeadProps = {
+type TableHeaderProps = {
     config : Config
     sortColumn : (column : Definition) => void
 };
 
-export const THead : React.StatelessComponent<THeadProps> = (props) => {
+export const TableHeader : React.StatelessComponent<TableHeaderProps> = (props) => {
     function onClick(def) {
         if(def.sortable === null || def.sortable != false) {
             props.sortColumn(def);

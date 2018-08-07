@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TRow } from './trow';
+import { TableRow } from './tableRow';
 import { Config, Definition } from '../model/config';
 import { SortDirection, SortAlgorithmEqual } from '../model/sort';
 
@@ -11,7 +11,7 @@ type TBodyProps = {
     filterFn? : (row) => boolean
 };
 
-export const TBody : React.StatelessComponent<TBodyProps> = (props) => {
+export const TableBody : React.StatelessComponent<TBodyProps> = (props) => {
     let data = props.data;
 
     if(props.filterFn) {
@@ -33,6 +33,6 @@ export const TBody : React.StatelessComponent<TBodyProps> = (props) => {
     }
 
     return <tbody className={ props.config.styling.body }>
-        { data.map((row, i) => <TRow key={ i } config={ props.config } row={ row }  />) }
+        { data.map((row, i) => <TableRow key={ i } config={ props.config } row={ row }  />) }
     </tbody>;
 };
