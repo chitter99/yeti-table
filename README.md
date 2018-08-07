@@ -47,27 +47,27 @@ ReactDOM.render(<App/>, document.getElementById("app"));
 # Configuration
 
 ## Table
-Prop | Type | Desc | Example | Default
+Prop | Type | Desc | Default
 --- | --- | --- | --- | ---
-data | `Array<any>` | Data of table | | Null
-className | string | Class of table elm. | | Null
-rowClassName | string | Class of tr elm. | | Null
-trowClassName | string | Class of th elm. | | Null
-headerClassName | string | Class of thead elm. | | Null
-bodyClassName | string | Class of tbody elm. | | Null
-sortable | boolean | Is Table sortable. When True Table can be sorted after every Column | | `false`
+data | `Array<any>` | Data of table | `null`
+className | `String` | Class of table elm. | `null`
+rowClassName | `String` | Class of tr elm. | `null`
+trowClassName | `String` | Class of th elm. | `null`
+headerClassName | `String` | Class of thead elm. | `null`
+bodyClassName | `String` | Class of tbody elm.| `null`
+sortable | `Boolean` | Is Table sortable. When True Table can be sorted after every Column | `false`
 
 ## Columns
 Each Column is represented by a Column Element inside the Table Body.
 
 Prop | Type | Desc | Example | Default
 --- | --- | --- | --- | ---
-header | string | Name in the Table Header | `Name` | Required
-accessor | string | String accessor for navigating in the Data Object. Can contain `.`. | `employee.email` | Null
-getValue | callback `(obj : any) => string` | Callback to get Value of Cell. If no accessor set, obj is full Row. | `(row) => row.name` | Null
-cell | `React.StatelessComponent<CellProps>` | Cell Component. `props.value` contains accessor value or getValue result or full row. | | Null
-sort | `(a, b) => Number` | Custom callback for sorting. 1: a > b -1: a < b 0: a = b | | Null
-sortable | boolean | Overrides sortable of Table | | Null
+header | `String`  | Name in the Table Header | `Name` | Required
+accessor | `String` | String accessor for navigating in the Data Object. Can contain `.`. | `employee.email` | `null`
+getValue | `(obj : any) => string` | Callback to get Value of Cell. If no accessor set, obj is full Row. | `(row) => row.name` | `null`
+cell | `React.StatelessComponent<CellProps>` | Cell Component. `props.value` contains accessor value or getValue result or full row. | | `null`
+sort | `(a, b) => Number` | Custom callback for sorting. 1: a > b -1: a < b 0: a = b | | `null`
+sortable | `Boolean` | Overrides sortable of Table | | `null`
 
 # Installation 
 
