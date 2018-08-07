@@ -87,8 +87,9 @@ var YetiTable = require('yeti-table');
 - [X] Sortable with custom algorithm.
 - [ ] Customizable indicator for sort.
 - [ ] Data from remote URL. Request Data automaticly from Backend.
-- [ ] Filter data with custom form. (Clientside Filtering)
-- [ ] Filter data with custom form. (Query Parameter with Backend)
+- [ ] Filter data with props.
+- [ ] Filter data with custom form.
+- [ ] Filter in comination with remote URL. Remote filtering with Query Parameter. 
 - [ ] Plugin System
 
 ## Plugin System
