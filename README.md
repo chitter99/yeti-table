@@ -2,6 +2,11 @@
 
 Simple Table Component for React
 
+# Features
+* Filters (Client side)
+* Fully customizable with Props
+* Easy and fast Table Markup
+
 # Example
 ```javascript
 import * as React from 'react';
