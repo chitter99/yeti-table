@@ -47,16 +47,16 @@ ReactDOM.render(<App/>, document.getElementById("app"));
 # Configuration
 
 ## Table
-Prop | Type | Desc | Default
---- | --- | --- | --- | ---
-data | `Array<any>` | Data of table | `null`
-className | `String` | Class of table elm. | `null`
-rowClassName | `String` | Class of tr elm. | `null`
-trowClassName | `String` | Class of th elm. | `null`
-headerClassName | `String` | Class of thead elm. | `null`
-bodyClassName | `String` | Class of tbody elm.| `null`
-sortable | `Boolean` | Is Table sortable. When True Table can be sorted after every Column | `false`
-
+Prop | Type | Desc | Default 
+--- | --- | --- | ---
+data | `Array<any>` | Data of table | `null` 
+className | `String` | Class of table elm. | `null` 
+rowClassName | `String` | Class of tr elm. | `null` 
+trowClassName | `String` | Class of th elm. | `null` 
+headerClassName | `String` | Class of thead elm. | `null` 
+bodyClassName | `String` | Class of tbody elm.| `null` 
+sortable | `Boolean` | Is Table sortable. When True Table can be sorted after every Column | `false` 
+ 
 ## Columns
 Each Column is represented by a Column Element inside the Table Body.
 
