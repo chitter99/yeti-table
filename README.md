@@ -85,6 +85,54 @@ import { Table, Column } from 'yeti-table';
 var YetiTable = require('yeti-table');
 ```
 
+# Documentation
+
+## Custom Column Types
+You can create custom Column Types with custom Behavior. For Example let's assume you need a Column which allways adds a red Background to the Column. The usage of this Column whould look similar to this.
+
+```javascript
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Table, Column } from 'yeti-table';
+import { RedColumn } from './redColumn';
+
+let data = [
+    { model: 'IPhone X', price: 1000 },
+    { model: 'Huawei P20', price: 300 },
+    { model: 'Nokia 8110 4G', price: 100 },
+    { model: 'Samsung Galaxy S9', price: 800 },
+];
+
+const App : React.StatelessComponent<any> = (props) => <div>
+    <Table data={ data } sortable={ true }>
+        <Column 
+            header='Smartphone'
+            accessor='model' />
+        <RedColumn 
+            header='Price'
+            accessor='price'
+            getValue={ (price) => <a>{ price } $</a> } />
+    </Table>
+</div>;
+
+ReactDOM.render(<App/>, document.getElementById("app"));
+```
+
+As you can see in the example. We are not using the Column for our Red Column, we use the RedColumn Component. This instructs yeti-table to use a custom Component for rendering this Column. Now let's take a look at `redColumn.ts`:
+
+```javascript
+import * as React from 'react';
+import { Column, TableBodyColumnProps, TableBodyCell } from 'yeti-table';
+
+const RedColumnComponent : React.StatelessComponent<TableBodyColumnProps> = (props) => <td style={ { backgroundColor: 'red' } }>
+    <TableBodyCell context={ props.context } column={ props.column } row={ props.row } /> // Needed for drawing the cell.
+</td>;
+
+export class RedColumn extends Column {
+    public static bodyColumn = RedColumnComponent; // Important part, can be any type of stateless component.
+}
+```
+
 # Planned Features
 - [ ] Responsive styling.
 - [X] Sortable with equal algorithm.
