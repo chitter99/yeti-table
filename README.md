@@ -96,6 +96,7 @@ var YetiTable = require('yeti-table');
 - [ ] Filter data with custom form.
 - [ ] Filter in comination with remote URL. Remote filtering with Query Parameter. 
 - [ ] Plugin System
+- [X] Use other types of Columns.
 
 ## Plugin System
 - [ ] Plugins can replace or add to individual components.

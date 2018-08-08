@@ -404,6 +404,10 @@ exports.TableRoot = function (props) {
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var tableBodyCell_1 = __webpack_require__(/*! ./components/tableBodyCell */ "./src/components/tableBodyCell.tsx");
+exports.TableBodyCell = tableBodyCell_1.TableBodyCell;
+var tableBodyColumn_1 = __webpack_require__(/*! ./components/tableBodyColumn */ "./src/components/tableBodyColumn.tsx");
+exports.TableBodyColumn = tableBodyColumn_1.TableBodyColumn;
 var table_1 = __webpack_require__(/*! ./components/table */ "./src/components/table.tsx");
 exports.Table = table_1.Table;
 var column_1 = __webpack_require__(/*! ./components/column */ "./src/components/column.tsx");

@@ -78,10 +78,6 @@ export declare type TableRootProps = {
 };
 export declare const TableRoot: React.StatelessComponent<TableRootProps>;
 
-export declare class TestColumn extends Column {
-    static bodyColumn: (props: any) => JSX.Element;
-}
-
 export declare type Context = {
     config: Config;
     definitions: Array<Definition>;
