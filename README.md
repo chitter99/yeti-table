@@ -8,6 +8,7 @@ Simple Table Component for React
 * **Fully customizable** with Props and Callbacks
 * Easy and fast Table Markup
 * **Light** in filesize, current build is only **5kb** small 
+* **100% Open Source** and **Free** to use
 
 # Example
 ```javascript
