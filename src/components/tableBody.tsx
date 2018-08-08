@@ -3,7 +3,7 @@ import { TableRow } from './tableRow';
 import { Config, Definition } from '../model/config';
 import { SortDirection, SortAlgorithmEqual } from '../model/sort';
 
-type TBodyProps = {
+type TableBodyProps = {
     config : Config
     data : Array<any>
     sortColumn? : Definition
@@ -11,7 +11,7 @@ type TBodyProps = {
     filterFn? : (row) => boolean
 };
 
-export const TableBody : React.StatelessComponent<TBodyProps> = (props) => {
+export const TableBody : React.StatelessComponent<TableBodyProps> = (props) => {
     let data = props.data;
 
     if(props.filterFn) {

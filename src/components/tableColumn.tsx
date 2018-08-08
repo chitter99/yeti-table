@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-type TableColumnProps = {
+export type TableColumnProps = {
     definition : any
     row : any
 };

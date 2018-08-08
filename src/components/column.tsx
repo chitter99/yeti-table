@@ -1,7 +1,15 @@
 import * as React from 'react';
-import { Definition } from '../model/config';
+import { CellProps } from '../model/config';
 
-export type ColumnProps = Definition;
+export type ColumnProps = {
+    header : string
+    accessor? : string
+    getValue?: (obj : any) => string
+    className? : string | ((obj : any) => string)
+    cell? : (props : CellProps) => JSX.Element
+    sort? : (a : any, b : any) => 1 | -1 | 0
+    sortable? : boolean
+};
 
 export const Column : React.StatelessComponent<ColumnProps> = (props) => {
     return null;
