@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CellProps } from '../model/config';
+import { TableBodyColumnProps, TableBodyColumn } from './tableBodyColumn';
 
 export type ColumnProps = {
     header : string
@@ -12,5 +13,5 @@ export type ColumnProps = {
 };
 
 export class Column extends React.Component<ColumnProps, any> {
-     
+     public static bodyColumn : (props : TableBodyColumnProps) => JSX.Element = TableBodyColumn;
 }

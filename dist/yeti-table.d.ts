@@ -14,6 +14,7 @@ export declare type ColumnProps = {
     sortable?: boolean;
 };
 export declare class Column extends React.Component<ColumnProps, any> {
+    static bodyColumn: (props: TableBodyColumnProps) => JSX.Element;
 }
 
 export declare type TableProps = {
@@ -77,6 +78,10 @@ export declare type TableRootProps = {
 };
 export declare const TableRoot: React.StatelessComponent<TableRootProps>;
 
+export declare class TestColumn extends Column {
+    static bodyColumn: (props: any) => JSX.Element;
+}
+
 export declare type Context = {
     config: Config;
     definitions: Array<Definition>;
@@ -93,6 +98,7 @@ export declare type Config = {
     sortable: boolean;
 };
 export declare type Definition = {
+    type: (props: TableBodyColumnProps) => JSX.Element;
     header: string;
     accessor?: string;
     getValue: (obj: any) => string;

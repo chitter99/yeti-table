@@ -9,6 +9,6 @@ type TableBodyRowProps = {
 
 export const TableBodyRow : React.StatelessComponent<TableBodyRowProps> = (props) => {
     return <tr className={ props.context.config.styling.row }>
-        { props.context.definitions.map((col, i) => <TableBodyColumn context={ props.context } column={ col } row={ props.row } key={ i } />) }
+        { props.context.definitions.map((col, i) => React.createElement(col.type, { context: props.context, column: col, row: props.row, key: i})) }
     </tr>;
 };

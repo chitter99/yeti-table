@@ -124,11 +124,13 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
+var tableBodyColumn_1 = __webpack_require__(/*! ./tableBodyColumn */ "./src/components/tableBodyColumn.tsx");
 var Column = /** @class */function (_super) {
     __extends(Column, _super);
     function Column() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    Column.bodyColumn = tableBodyColumn_1.TableBodyColumn;
     return Column;
 }(React.Component);
 exports.Column = Column;
@@ -183,6 +185,7 @@ var Table = /** @class */function (_super) {
             if (React.isValidElement(child)) {
                 var p_1 = child.props;
                 var def_1 = util_1.merge(p_1, {
+                    type: child.type['bodyColumn'],
                     getValue: function getValue(row) {
                         var v = row;
                         if (def_1.accessor) {
@@ -335,10 +338,9 @@ exports.TableBodyColumn = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-var tableBodyColumn_1 = __webpack_require__(/*! ./tableBodyColumn */ "./src/components/tableBodyColumn.tsx");
 exports.TableBodyRow = function (props) {
     return React.createElement("tr", { className: props.context.config.styling.row }, props.context.definitions.map(function (col, i) {
-        return React.createElement(tableBodyColumn_1.TableBodyColumn, { context: props.context, column: col, row: props.row, key: i });
+        return React.createElement(col.type, { context: props.context, column: col, row: props.row, key: i });
     }));
 };
 
