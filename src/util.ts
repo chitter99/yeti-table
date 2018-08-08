@@ -9,3 +9,7 @@ export function fetchAccessor(obj : any, accessor : string) {
     }
     return obj[accessor];
 }
+
+export function merge(a, b) {
+    return { ...a, ...b};
+}

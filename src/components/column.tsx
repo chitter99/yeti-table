@@ -11,6 +11,6 @@ export type ColumnProps = {
     sortable? : boolean
 };
 
-export const Column : React.StatelessComponent<ColumnProps> = (props) => {
-    return null;
-};
+export class Column extends React.Component<ColumnProps, any> {
+     
+}

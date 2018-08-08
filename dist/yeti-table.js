@@ -106,10 +106,32 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 
 
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Column = function (props) {
-    return null;
-};
+var React = __webpack_require__(/*! react */ "react");
+var Column = /** @class */function (_super) {
+    __extends(Column, _super);
+    function Column() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Column;
+}(React.Component);
+exports.Column = Column;
 
 /***/ }),
 
@@ -141,10 +163,9 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-var tableHeader_1 = __webpack_require__(/*! ./tableHeader */ "./src/components/tableHeader.tsx");
-var tableBody_1 = __webpack_require__(/*! ./tableBody */ "./src/components/tableBody.tsx");
 var sort_1 = __webpack_require__(/*! ../model/sort */ "./src/model/sort.ts");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.ts");
+var tableRoot_1 = __webpack_require__(/*! ./tableRoot */ "./src/components/tableRoot.tsx");
 var Table = /** @class */function (_super) {
     __extends(Table, _super);
     function Table(props) {
@@ -161,9 +182,7 @@ var Table = /** @class */function (_super) {
         this.props.children.forEach(function (child) {
             if (React.isValidElement(child)) {
                 var p_1 = child.props;
-                var def_1 = {
-                    header: p_1.header,
-                    accessor: p_1.accessor,
+                var def_1 = util_1.merge(p_1, {
                     getValue: function getValue(row) {
                         var v = row;
                         if (def_1.accessor) {
@@ -173,12 +192,8 @@ var Table = /** @class */function (_super) {
                             v = p_1.getValue(v);
                         }
                         return v;
-                    },
-                    className: p_1.className,
-                    cell: p_1.cell,
-                    sort: p_1.sort,
-                    sortable: p_1.sortable
-                };
+                    }
+                });
                 defs.push(def_1);
             }
         });
@@ -186,7 +201,6 @@ var Table = /** @class */function (_super) {
     };
     Table.prototype.generateConfig = function () {
         return {
-            definition: this.generateColumnDefinitions(),
             styling: {
                 row: this.props.rowClassName,
                 trow: this.props.trowClassName,
@@ -194,6 +208,20 @@ var Table = /** @class */function (_super) {
                 body: this.props.bodyClassName
             },
             sortable: this.props.sortable ? this.props.sortable : false
+        };
+    };
+    Table.prototype.generateContext = function () {
+        return {
+            config: this.generateConfig(),
+            definitions: this.generateColumnDefinitions(),
+            sortCtx: {
+                sortColumnFn: this.sortColumn,
+                sortColumn: this.state.sortColumn,
+                sortDirection: this.state.sortDirection
+            },
+            filterCtx: {
+                filterFn: this.props.filterFn
+            }
         };
     };
     Table.prototype.sortColumn = function (column) {
@@ -207,8 +235,8 @@ var Table = /** @class */function (_super) {
         });
     };
     Table.prototype.render = function () {
-        var cof = this.generateConfig();
-        return React.createElement("table", { className: this.props.className }, React.createElement(tableHeader_1.TableHeader, { config: cof, sortColumn: this.sortColumn }), React.createElement(tableBody_1.TableBody, { config: cof, data: this.props.data, sortColumn: this.state.sortColumn, sortDirection: this.state.sortDirection, filterFn: this.props.filterFn }));
+        var ctx = this.generateContext();
+        return React.createElement(tableRoot_1.TableRoot, { context: ctx, data: this.props.data });
     };
     return Table;
 }(React.Component);
@@ -228,39 +256,39 @@ exports.Table = Table;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-var tableRow_1 = __webpack_require__(/*! ./tableRow */ "./src/components/tableRow.tsx");
+var tableBodyRow_1 = __webpack_require__(/*! ./tableBodyRow */ "./src/components/tableBodyRow.tsx");
 var sort_1 = __webpack_require__(/*! ../model/sort */ "./src/model/sort.ts");
 exports.TableBody = function (props) {
     var data = props.data;
-    if (props.filterFn) {
+    if (props.context.filterCtx.filterFn) {
         var filteredData_1 = [];
         data.forEach(function (row) {
-            if (props.filterFn(row)) {
+            if (props.context.filterCtx.filterFn(row)) {
                 filteredData_1.push(row);
             }
         });
         data = filteredData_1;
     }
-    if (props.sortColumn) {
+    if (props.context.sortCtx.sortColumn) {
         var fn_1 = sort_1.SortAlgorithmEqual;
-        if (props.sortColumn.sort) {
-            fn_1 = props.sortColumn.sort;
+        if (props.context.sortCtx.sortColumn.sort) {
+            fn_1 = props.context.sortCtx.sortColumn.sort;
         }
         data = data.sort(function (a, b) {
-            return props.sortDirection * fn_1(props.sortColumn.getValue(a), props.sortColumn.getValue(b));
+            return props.context.sortCtx.sortDirection * fn_1(props.context.sortCtx.sortColumn.getValue(a), props.context.sortCtx.sortColumn.getValue(b));
         });
     }
-    return React.createElement("tbody", { className: props.config.styling.body }, data.map(function (row, i) {
-        return React.createElement(tableRow_1.TableRow, { key: i, config: props.config, row: row });
+    return React.createElement("tbody", { className: props.context.config.styling.body }, data.map(function (row, i) {
+        return React.createElement(tableBodyRow_1.TableBodyRow, { context: props.context, row: row, key: i });
     }));
 };
 
 /***/ }),
 
-/***/ "./src/components/tableColumn.tsx":
-/*!****************************************!*\
-  !*** ./src/components/tableColumn.tsx ***!
-  \****************************************/
+/***/ "./src/components/tableBodyCell.tsx":
+/*!******************************************!*\
+  !*** ./src/components/tableBodyCell.tsx ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -269,9 +297,49 @@ exports.TableBody = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-exports.TableColumn = function (props) {
-    var value = props.definition.getValue(props.row);
-    return React.createElement("td", { className: props.definition.className }, props.definition.cell ? React.createElement(props.definition.cell, { value: value, row: props.row }) : value);
+exports.TableBodyCell = function (props) {
+    var value = props.column.getValue(props.row);
+    return props.column.cell ? React.createElement(props.column.cell, { value: value, row: props.row }) : React.createElement("span", null, value);
+};
+
+/***/ }),
+
+/***/ "./src/components/tableBodyColumn.tsx":
+/*!********************************************!*\
+  !*** ./src/components/tableBodyColumn.tsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var tableBodyCell_1 = __webpack_require__(/*! ./tableBodyCell */ "./src/components/tableBodyCell.tsx");
+exports.TableBodyColumn = function (props) {
+    return React.createElement("td", { className: props.column.className }, React.createElement(tableBodyCell_1.TableBodyCell, { context: props.context, column: props.column, row: props.row }));
+};
+
+/***/ }),
+
+/***/ "./src/components/tableBodyRow.tsx":
+/*!*****************************************!*\
+  !*** ./src/components/tableBodyRow.tsx ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var tableBodyColumn_1 = __webpack_require__(/*! ./tableBodyColumn */ "./src/components/tableBodyColumn.tsx");
+exports.TableBodyRow = function (props) {
+    return React.createElement("tr", { className: props.context.config.styling.row }, props.context.definitions.map(function (col, i) {
+        return React.createElement(tableBodyColumn_1.TableBodyColumn, { context: props.context, column: col, row: props.row, key: i });
+    }));
 };
 
 /***/ }),
@@ -291,11 +359,11 @@ var React = __webpack_require__(/*! react */ "react");
 exports.TableHeader = function (props) {
     function _onClick(def) {
         if (def.sortable === null || def.sortable != false) {
-            props.sortColumn(def);
+            props.context.sortCtx.sortColumnFn(def);
         }
     }
-    return React.createElement("thead", { className: props.config.styling.header }, React.createElement("tr", null, props.config.definition.map(function (def, i) {
-        return React.createElement("th", { key: i, className: props.config.styling.trow, onClick: function onClick() {
+    return React.createElement("thead", { className: props.context.config.styling.header }, React.createElement("tr", null, props.context.definitions.map(function (def, i) {
+        return React.createElement("th", { key: i, className: props.context.config.styling.trow, onClick: function onClick() {
                 return _onClick(def);
             } }, def.header);
     })));
@@ -303,10 +371,10 @@ exports.TableHeader = function (props) {
 
 /***/ }),
 
-/***/ "./src/components/tableRow.tsx":
-/*!*************************************!*\
-  !*** ./src/components/tableRow.tsx ***!
-  \*************************************/
+/***/ "./src/components/tableRoot.tsx":
+/*!**************************************!*\
+  !*** ./src/components/tableRoot.tsx ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -315,11 +383,10 @@ exports.TableHeader = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
-var tableColumn_1 = __webpack_require__(/*! ./tableColumn */ "./src/components/tableColumn.tsx");
-exports.TableRow = function (props) {
-    return React.createElement("tr", { className: props.config.styling.row }, props.config.definition.map(function (cell, i) {
-        return React.createElement(tableColumn_1.TableColumn, { key: i, definition: cell, row: props.row });
-    }));
+var tableHeader_1 = __webpack_require__(/*! ./tableHeader */ "./src/components/tableHeader.tsx");
+var tableBody_1 = __webpack_require__(/*! ./tableBody */ "./src/components/tableBody.tsx");
+exports.TableRoot = function (props) {
+    return React.createElement("table", null, React.createElement(tableHeader_1.TableHeader, { context: props.context }), React.createElement(tableBody_1.TableBody, { context: props.context, data: props.data }));
 };
 
 /***/ }),
@@ -374,6 +441,15 @@ exports.SortAlgorithmEqual = function (r1, r2) {
 "use strict";
 
 
+var __assign = undefined && undefined.__assign || Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) {
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+    }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 function fetchAccessor(obj, accessor) {
     var i = accessor.indexOf('.');
@@ -386,6 +462,10 @@ function fetchAccessor(obj, accessor) {
     return obj[accessor];
 }
 exports.fetchAccessor = fetchAccessor;
+function merge(a, b) {
+    return __assign({}, a, b);
+}
+exports.merge = merge;
 
 /***/ }),
 

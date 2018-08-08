@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { TableHeader } from './tableHeader';
-import { TableBody } from './tableBody';
-import { Config, Definition } from '../model/config';
+import { Config, Definition, Context } from '../model/config';
 import { SortDirection } from '../model/sort';
-import { fetchAccessor } from '../util';
+import { fetchAccessor, merge } from '../util';
 import { ColumnProps } from './column';
+import { TableRoot } from './tableRoot';
 
 type TableProps = {
     children? : Array<React.ReactChild>
@@ -38,9 +37,7 @@ export class Table extends React.Component<TableProps, TableState> {
         this.props.children.forEach((child) => {
             if(React.isValidElement(child)) {
                 let p = child.props as ColumnProps;
-                let def = {
-                    header: p.header,
-                    accessor: p.accessor,
+                let def = merge(p, {
                     getValue: (row) => {
                         let v = row;
                         if(def.accessor) {
@@ -50,12 +47,8 @@ export class Table extends React.Component<TableProps, TableState> {
                             v = p.getValue(v);
                         }
                         return v;
-                    },
-                    className: p.className,
-                    cell: p.cell,
-                    sort: p.sort,
-                    sortable: p.sortable
-                };
+                    }
+                });
                 defs.push(def);
             }
         });
@@ -64,7 +57,6 @@ export class Table extends React.Component<TableProps, TableState> {
 
     generateConfig() : Config {
         return {
-            definition: this.generateColumnDefinitions(),
             styling: {
                 row: this.props.rowClassName,
                 trow: this.props.trowClassName,
@@ -72,6 +64,21 @@ export class Table extends React.Component<TableProps, TableState> {
                 body: this.props.bodyClassName
             },
             sortable: this.props.sortable ? this.props.sortable : false
+        };
+    }
+
+    public generateContext() : Context {
+        return {
+            config: this.generateConfig(),
+            definitions: this.generateColumnDefinitions(),
+            sortCtx: {
+                sortColumnFn: this.sortColumn,
+                sortColumn: this.state.sortColumn,
+                sortDirection: this.state.sortDirection
+            },
+            filterCtx: {
+                filterFn: this.props.filterFn
+            }
         };
     }
 
@@ -87,11 +94,8 @@ export class Table extends React.Component<TableProps, TableState> {
     }
     
     render() {
-        let cof = this.generateConfig();
-        return <table className={ this.props.className }>
-            <TableHeader config={ cof } sortColumn={ this.sortColumn } />
-            <TableBody config={ cof } data={ this.props.data } sortColumn={ this.state.sortColumn } sortDirection={ this.state.sortDirection } filterFn={ this.props.filterFn } />
-        </table>;
+        let ctx = this.generateContext();
+        return <TableRoot context={ ctx } data={ this.props.data } />;
     }
 }
 

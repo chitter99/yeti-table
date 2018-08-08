@@ -2,9 +2,19 @@ import * as React from "react";
 /// <reference types="react" />
 
 export declare function fetchAccessor(obj: any, accessor: string): any;
+export declare function merge(a: any, b: any): any;
 
-export declare type ColumnProps = Definition;
-export declare const Column: React.StatelessComponent<ColumnProps>;
+export declare type ColumnProps = {
+    header: string;
+    accessor?: string;
+    getValue?: (obj: any) => string;
+    className?: string | ((obj: any) => string);
+    cell?: (props: CellProps) => JSX.Element;
+    sort?: (a: any, b: any) => 1 | -1 | 0;
+    sortable?: boolean;
+};
+export declare class Column extends React.Component<ColumnProps, any> {
+}
 
 export declare type TableProps = {
     children?: Array<React.ReactChild>;
@@ -25,40 +35,55 @@ export declare class Table extends React.Component<TableProps, TableState> {
     constructor(props: any);
     generateColumnDefinitions(): Array<Definition>;
     generateConfig(): Config;
+    generateContext(): Context;
     sortColumn(column: Definition): void;
     render(): JSX.Element;
 }
 
-export declare type TBodyProps = {
-    config: Config;
-    data: Array<any>;
-    sortColumn?: Definition;
-    sortDirection?: SortDirection;
-    filterFn?: (row: any) => boolean;
+export declare type TableBodyProps = {
+    context: Context;
+    data?: Array<any>;
 };
-export declare const TableBody: React.StatelessComponent<TBodyProps>;
+export declare const TableBody: React.StatelessComponent<TableBodyProps>;
 
-
-export declare type TableColumnProps = {
-    definition: any;
+export declare type TableBodyCellProps = {
+    context: Context;
+    column: Definition;
     row: any;
 };
-export declare const TableColumn: React.StatelessComponent<TableColumnProps>;
+export declare const TableBodyCell: React.StatelessComponent<TableBodyCellProps>;
+
+export declare type TableBodyColumnProps = {
+    context: Context;
+    column: Definition;
+    row: any;
+};
+export declare const TableBodyColumn: React.StatelessComponent<TableBodyColumnProps>;
+
+export declare type TableBodyRowProps = {
+    context: Context;
+    row: any;
+};
+export declare const TableBodyRow: React.StatelessComponent<TableBodyRowProps>;
 
 export declare type TableHeaderProps = {
-    config: Config;
-    sortColumn: (column: Definition) => void;
+    context: Context;
 };
 export declare const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
-export declare type TableRowProps = {
-    config: Config;
-    row: any;
+export declare type TableRootProps = {
+    context: Context;
+    data?: Array<any>;
 };
-export declare const TableRow: React.StatelessComponent<TableRowProps>;
+export declare const TableRoot: React.StatelessComponent<TableRootProps>;
 
+export declare type Context = {
+    config: Config;
+    definitions: Array<Definition>;
+    sortCtx: SortContext;
+    filterCtx: FilterContext;
+};
 export declare type Config = {
-    definition: Array<Definition>;
     styling: {
         row: string;
         trow: string;
@@ -70,8 +95,8 @@ export declare type Config = {
 export declare type Definition = {
     header: string;
     accessor?: string;
-    getValue?: (obj: any) => string;
-    className?: string | ((obj: any) => string);
+    getValue: (obj: any) => string;
+    className?: string;
     cell?: (props: CellProps) => JSX.Element;
     sort?: (a: any, b: any) => 1 | -1 | 0;
     sortable?: boolean;
@@ -81,6 +106,15 @@ export declare type CellProps = {
     row: any;
 };
 
+export declare type FilterContext = {
+    filterFn?: (row: any) => boolean;
+};
+
+export declare type SortContext = {
+    sortColumnFn: (column: Definition) => void;
+    sortColumn?: Definition;
+    sortDirection?: SortDirection;
+};
 export declare enum SortDirection {
     ASC = 1,
     DESC = -1

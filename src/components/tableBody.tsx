@@ -1,38 +1,35 @@
 import * as React from 'react';
-import { TableRow } from './tableRow';
-import { Config, Definition } from '../model/config';
-import { SortDirection, SortAlgorithmEqual } from '../model/sort';
+import { TableBodyRow } from './tableBodyRow';
+import { Context} from '../model/config';
+import { SortAlgorithmEqual } from '../model/sort';
 
 type TableBodyProps = {
-    config : Config
-    data : Array<any>
-    sortColumn? : Definition
-    sortDirection? : SortDirection
-    filterFn? : (row) => boolean
+    context : Context
+    data? : Array<any>
 };
 
 export const TableBody : React.StatelessComponent<TableBodyProps> = (props) => {
     let data = props.data;
 
-    if(props.filterFn) {
+    if(props.context.filterCtx.filterFn) {
         let filteredData = [];
         data.forEach((row) => {
-            if(props.filterFn(row)) {
+            if(props.context.filterCtx.filterFn(row)) {
                 filteredData.push(row);
             }
         });
         data = filteredData;
     }
 
-    if(props.sortColumn) {
+    if(props.context.sortCtx.sortColumn) {
         let fn = SortAlgorithmEqual;
-        if(props.sortColumn.sort) {
-            fn = props.sortColumn.sort;
+        if(props.context.sortCtx.sortColumn.sort) {
+            fn = props.context.sortCtx.sortColumn.sort;
         }
-        data = data.sort((a, b) => props.sortDirection * fn(props.sortColumn.getValue(a), props.sortColumn.getValue(b)));
+        data = data.sort((a, b) => props.context.sortCtx.sortDirection * fn(props.context.sortCtx.sortColumn.getValue(a), props.context.sortCtx.sortColumn.getValue(b)));
     }
 
-    return <tbody className={ props.config.styling.body }>
-        { data.map((row, i) => <TableRow key={ i } config={ props.config } row={ row }  />) }
+    return <tbody className={ props.context.config.styling.body }>
+        { data.map((row, i) => <TableBodyRow context={ props.context } row={ row } key={ i } />) }
     </tbody>;
 };

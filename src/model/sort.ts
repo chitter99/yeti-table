@@ -1,3 +1,10 @@
+import { Definition } from './config';
+
+export type SortContext = {
+    sortColumnFn : (column : Definition) => void
+    sortColumn? : Definition
+    sortDirection? : SortDirection
+}
 
 export enum SortDirection {
     ASC=1, DESC=-1
