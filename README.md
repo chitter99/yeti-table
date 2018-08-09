@@ -7,8 +7,9 @@ Simple Table Component for React
 * **Sort** with default or custom Algorithms
 * **Fully customizable** with Props and Callbacks
 * Easy and fast Table Markup
-* **Light** in filesize, current build is only **5kb** small 
+* **Light** in filesize, current build is only **6kb** small 
 * **100% Open Source** and **Free** to use
+* **Optional** factory styling
 
 # Example
 ```javascript
@@ -66,6 +67,20 @@ getValue | `(obj : any) => string` | Callback to get Value of Cell. If no access
 cell | `React.StatelessComponent<CellProps>` | Cell Component. `props.value` contains accessor value or getValue result or full row. | | `null`
 sort | `(a, b) => Number` | Custom callback for sorting. 1: a > b -1: a < b 0: a = b | | `null`
 sortable | `Boolean` | Overrides sortable of Table | | `null`
+
+## Factory Styling
+To use the provided styling, you need to import the `yeti-table/styling` module. It will automaticly add all styling to your html markup. You then need can use the factory styling like any other styling object. 
+
+```javascript
+...
+import { Table, Column } from 'yeti-table';
+import { yetiDefaultStyling } from 'yeti-table/styling';  
+...
+<Table data={ ... } styling={ yetiDefaultStyling }>
+    <Column header='Example' />
+</Table>
+...
+```
 
 # Installation 
 
@@ -172,7 +187,7 @@ The result will look like this:
 
 # Planned Features
 - [X] Styling each component via prop.
-- [ ] Responsive styling.
+- [X] Default styling.
 - [X] Sortable with equal algorithm.
 - [X] Sortable with custom algorithm.
 - [ ] Customizable indicator for sort.
