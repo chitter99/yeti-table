@@ -100,6 +100,26 @@ export type Styling = {
 }
 ```
 
+Here is an example how you use this prop.
+
+```javascript
+...
+<Table styling={{
+    tableRoot: 'mytable',
+    tableHeader: 'header'
+}}>
+...
+```
+
+```css
+.mytable {
+    background-color: red;
+}
+.header {
+    background-color: blue;
+}
+```
+
 ## Custom Column Types
 You can create custom Column Types with custom Behavior. For Example let's assume you need a Column which allways adds a red Background to the Column. The usage of this Column whould look similar to this.
 
@@ -151,6 +171,7 @@ The result will look like this:
 ![Example with Red Component](https://github.com/chitter99/yeti-table/blob/master/media/example-2.png?raw=true)
 
 # Planned Features
+- [X] Styling each component via prop.
 - [ ] Responsive styling.
 - [X] Sortable with equal algorithm.
 - [X] Sortable with custom algorithm.
