@@ -1,20 +1,31 @@
 
-.ytbl {
-    background-color: red;
+.ytbl, .ytbl-body-column, .ytbl-header-column {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border-left: 1.5px black solid;
+    border-right: 1.5px black solid;
 }
 
-.ytbl-body-row {
+.ytbl {
+    border: 1.5px black solid;
+}
 
+.ytbl-body-row:nth-child(even) {
+    background-color: #E6E6E6;
 }
 
 .ytbl-body-column {
-
+    height: 20px;
+    padding: 2px;
 }
 
 .ytbl-header-row {
-
+    color: white;
+    background-color: #42414D;
 }
 
 .ytbl-header-column {
-
+    width: 25px;
+    text-align: left;
+    padding: 2px;
 }
