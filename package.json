@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config config/webpack.prod.js",
-    "dev": "webpack --config config/webpack.dev.js && scripts/dev-after-build.bat"
+    "dev": "webpack --config config/webpack.dev.js && \"%cd%\\scripts\\dev-after-build.bat\""
   },
   "author": "chitter99 <aaron.schmid@outlook.com> (http://aaronschmid.ch)",
   "license": "GPL-3.0",
