@@ -125,14 +125,14 @@ var __extends = undefined && undefined.__extends || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
 var tableBodyColumn_1 = __webpack_require__(/*! ./tableBodyColumn */ "./src/components/tableBodyColumn.tsx");
-var tableHeaderCell_1 = __webpack_require__(/*! ./tableHeaderCell */ "./src/components/tableHeaderCell.tsx");
+var tableHeaderColumn_1 = __webpack_require__(/*! ./tableHeaderColumn */ "./src/components/tableHeaderColumn.tsx");
 var Column = /** @class */function (_super) {
     __extends(Column, _super);
     function Column() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Column.bodyColumn = tableBodyColumn_1.TableBodyColumn;
-    Column.headerColumn = tableHeaderCell_1.TableHeaderCell;
+    Column.headerColumn = tableHeaderColumn_1.TableHeaderColumn;
     return Column;
 }(React.Component);
 exports.Column = Column;
@@ -361,17 +361,14 @@ exports.TableBodyRow = function (props) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
+var tableHeaderRow_1 = __webpack_require__(/*! ./tableHeaderRow */ "./src/components/tableHeaderRow.tsx");
 exports.TableHeader = function (props) {
-    function _onClick(def) {
+    function onClick(def) {
         if (def.sortable === null || def.sortable != false) {
             props.context.sortCtx.sortColumnFn(def);
         }
     }
-    return React.createElement("thead", { className: props.context.config.styling.header }, React.createElement("tr", null, props.context.definitions.map(function (def, i) {
-        return React.createElement("th", { key: i, className: props.context.config.styling.trow, onClick: function onClick() {
-                return _onClick(def);
-            } }, def.header);
-    })));
+    return React.createElement("thead", { className: props.context.config.styling.header }, React.createElement(tableHeaderRow_1.TableHeaderRow, { context: props.context }));
 };
 
 /***/ }),
@@ -390,6 +387,47 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
 exports.TableHeaderCell = function (props) {
     return React.createElement("a", null, props.column.header);
+};
+
+/***/ }),
+
+/***/ "./src/components/tableHeaderColumn.tsx":
+/*!**********************************************!*\
+  !*** ./src/components/tableHeaderColumn.tsx ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var tableHeaderCell_1 = __webpack_require__(/*! ./tableHeaderCell */ "./src/components/tableHeaderCell.tsx");
+exports.TableHeaderColumn = function (props) {
+    return React.createElement("th", { className: props.context.config.styling.trow, onClick: function onClick() {
+            return props.context.sortCtx.sortColumnFn(props.column);
+        } }, React.createElement(tableHeaderCell_1.TableHeaderCell, { context: props.context, column: props.column }));
+};
+
+/***/ }),
+
+/***/ "./src/components/tableHeaderRow.tsx":
+/*!*******************************************!*\
+  !*** ./src/components/tableHeaderRow.tsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+exports.TableHeaderRow = function (props) {
+    return React.createElement("tr", null, props.context.definitions.map(function (col, i) {
+        return React.createElement(col.typeHeader, { context: props.context, column: col, key: i });
+    }));
 };
 
 /***/ }),

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Context, Definition } from '../model/config';
+import { Context } from '../model/config';
+import { TableHeaderRow } from './tableHeaderRow';
 
 type TableHeaderProps = {
     context : Context
@@ -12,8 +13,6 @@ export const TableHeader : React.StatelessComponent<TableHeaderProps> = (props) 
         }
     }
     return <thead className={ props.context.config.styling.header }>
-        <tr>
-            { props.context.definitions.map((def, i) => <th key={ i } className={ props.context.config.styling.trow } onClick={ () => onClick(def) }>{ def.header }</th>) }
-        </tr>
+        <TableHeaderRow context={ props.context } />
     </thead>;
 };

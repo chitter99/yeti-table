@@ -7,8 +7,8 @@ export type TableHeaderColumnProps = {
     column : Definition
 };
 
-export const TableBodyColumn : React.StatelessComponent<TableHeaderColumnProps> = (props) => {
-    return <th className={ props.column.className }>
+export const TableHeaderColumn : React.StatelessComponent<TableHeaderColumnProps> = (props) => {
+    return <th className={ props.context.config.styling.trow } onClick={ () => props.context.sortCtx.sortColumnFn(props.column) }>
         <TableHeaderCell context={ props.context } column={ props.column } />
     </th>;
 };

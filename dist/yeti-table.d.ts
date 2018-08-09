@@ -83,7 +83,7 @@ export declare type TableHeaderColumnProps = {
     context: Context;
     column: Definition;
 };
-export declare const TableBodyColumn: React.StatelessComponent<TableHeaderColumnProps>;
+export declare const TableHeaderColumn: React.StatelessComponent<TableHeaderColumnProps>;
 
 export declare type TableHeaderRowProps = {
     context: Context;
