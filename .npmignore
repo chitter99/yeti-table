@@ -3,5 +3,5 @@ media
 .babelrc
 tsconfig.json
 config
-dist/yeti-table.js.map
-dev-after-build.bat
+dist/*.js.map
+scripts

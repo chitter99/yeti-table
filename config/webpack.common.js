@@ -2,10 +2,13 @@ const resolve = require('path').resolve;
 const TypescriptDeclarationPlugin = require('typescript-declaration-webpack-plugin');
 
 module.exports = {
-    entry: resolve('src'),
+    entry: {
+        'index': resolve('src'),
+        'styling': resolve('src/styling')
+    },
     output: {
         path: resolve('dist'),
-        filename: 'yeti-table.js',
+        filename: '[name].js',
 		libraryTarget: 'umd'
     },
     module: {
@@ -13,6 +16,12 @@ module.exports = {
             test: /\.tsx?$/,
             use: [
                 'babel-loader', 'ts-loader'
+            ]
+        },
+        {
+            test: /\.css/,
+            use: [
+                'style-loader', 'css-loader'
             ]
         }]
     },
@@ -29,7 +38,7 @@ module.exports = {
     },
 	plugins: [
 		new TypescriptDeclarationPlugin({
-			out: 'yeti-table.d.ts'
+			out: 'index.d.ts'
 		})
 	]
 };

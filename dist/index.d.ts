@@ -21,13 +21,9 @@ export declare class Column extends React.Component<ColumnProps, any> {
 export declare type TableProps = {
     children?: Array<React.ReactChild>;
     data?: Array<any>;
-    className?: string;
-    rowClassName?: string;
-    trowClassName?: string;
-    headerClassName?: string;
-    bodyClassName?: string;
     sortable?: boolean;
     filterFn?: (row: any) => boolean;
+    styling?: Styling;
 };
 export declare type TableState = {
     sortColumn?: Definition;
@@ -103,12 +99,7 @@ export declare type Context = {
     filterCtx: FilterContext;
 };
 export declare type Config = {
-    styling: {
-        row: string;
-        trow: string;
-        header: string;
-        body: string;
-    };
+    styling: Styling;
     sortable: boolean;
 };
 export declare type Definition = {
@@ -141,3 +132,17 @@ export declare enum SortDirection {
     DESC = -1
 }
 export declare const SortAlgorithmEqual: (r1: any, r2: any) => 1 | -1 | 0;
+
+export declare type Styling = {
+    tableRoot?: string;
+    tableBody?: string;
+    tableBodyRow?: string;
+    tableBodyColumn?: string;
+    tableBodyCell?: string;
+    tableHeader?: string;
+    tableHeaderRow?: string;
+    tableHeaderColumn?: string;
+    tableHeaderCell?: string;
+};
+
+export declare const YetiDefaultStyling: any;

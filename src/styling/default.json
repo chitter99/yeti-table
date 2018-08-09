@@ -1,0 +1,7 @@
+{
+    "tableRoot": "ytbl",
+    "tableBodyRow": "ytbl-body-row",
+    "tableBodyColumn": "ytbl-body-column",
+    "tableHeaderRow": "ytbl-header-row",
+    "tableHeaderColumn": "ytbl-header-column"
+}

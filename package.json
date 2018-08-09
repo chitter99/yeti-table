@@ -2,10 +2,10 @@
   "name": "yeti-table",
   "version": "0.2.1",
   "description": "Table Component for React",
-  "main": "dist/yeti-table.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --config config/webpack.prod.js",
-    "dev": "webpack --config config/webpack.dev.js && dev-after-build.bat"
+    "dev": "webpack --config config/webpack.dev.js && scripts/dev-after-build.bat"
   },
   "author": "chitter99 <aaron.schmid@outlook.com> (http://aaronschmid.ch)",
   "license": "GPL-3.0",
@@ -23,7 +23,10 @@
     "webpack-cli": "^3.0.8",
     "webpack-merge": "^4.1.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.22.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chitter99/yeti-table.git"
