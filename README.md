@@ -74,9 +74,9 @@ To use the provided styling, you need to import the `yeti-table/styling` module.
 ```javascript
 ...
 import { Table, Column } from 'yeti-table';
-import { yetiDefaultStyling } from 'yeti-table/styling';  
+import { YetiDefaultStyling } from 'yeti-table/styling';  
 ...
-<Table data={ ... } styling={ yetiDefaultStyling }>
+<Table data={ ... } styling={ YetiDefaultStyling }>
     <Column header='Example' />
 </Table>
 ...
