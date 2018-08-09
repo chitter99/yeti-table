@@ -12,7 +12,7 @@ export const TableHeader : React.StatelessComponent<TableHeaderProps> = (props) 
             props.context.sortCtx.sortColumnFn(def);
         }
     }
-    return <thead className={ props.context.config.styling.header }>
+    return <thead className={ props.context.config.styling.tableHeader }>
         <TableHeaderRow context={ props.context } />
     </thead>;
 };

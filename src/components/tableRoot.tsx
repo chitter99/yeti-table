@@ -8,7 +8,7 @@ type TableRootProps = {
     data? : Array<any>
 };
 
-export const TableRoot : React.StatelessComponent<TableRootProps> = (props) => <table>
+export const TableRoot : React.StatelessComponent<TableRootProps> = (props) => <table className={ props.context.config.styling.tableRoot }>
     <TableHeader context={ props.context } />
     <TableBody context={ props.context } data={ props.data } />
 </table>;

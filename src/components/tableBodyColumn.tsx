@@ -9,7 +9,7 @@ export type TableBodyColumnProps = {
 };
 
 export const TableBodyColumn : React.StatelessComponent<TableBodyColumnProps> = (props) => {
-    return <td className={ props.column.className }>
+    return <td className={ props.context.config.styling.tableBodyColumn }>
         <TableBodyCell context={ props.context } column={ props.column } row={ props.row } />
     </td>;
 };

@@ -29,7 +29,7 @@ export const TableBody : React.StatelessComponent<TableBodyProps> = (props) => {
         data = data.sort((a, b) => props.context.sortCtx.sortDirection * fn(props.context.sortCtx.sortColumn.getValue(a), props.context.sortCtx.sortColumn.getValue(b)));
     }
 
-    return <tbody className={ props.context.config.styling.body }>
+    return <tbody className={ props.context.config.styling.tableBody }>
         { data.map((row, i) => <TableBodyRow context={ props.context } row={ row } key={ i } />) }
     </tbody>;
 };

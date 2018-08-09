@@ -8,7 +8,7 @@ export type TableHeaderColumnProps = {
 };
 
 export const TableHeaderColumn : React.StatelessComponent<TableHeaderColumnProps> = (props) => {
-    return <th className={ props.context.config.styling.trow } onClick={ () => props.context.sortCtx.sortColumnFn(props.column) }>
+    return <th className={ props.context.config.styling.tableHeaderColumn } onClick={ () => props.context.sortCtx.sortColumnFn(props.column) }>
         <TableHeaderCell context={ props.context } column={ props.column } />
     </th>;
 };

@@ -51,14 +51,10 @@ ReactDOM.render(<App/>, document.getElementById("app"));
 Prop | Type | Desc | Default 
 --- | --- | --- | ---
 data | `Array<any>` | Data of table | `null` 
-className | `String` | Class of table elm. | `null` 
-rowClassName | `String` | Class of tr elm. | `null` 
-trowClassName | `String` | Class of th elm. | `null` 
-headerClassName | `String` | Class of thead elm. | `null` 
-bodyClassName | `String` | Class of tbody elm.| `null` 
+styling | `Styling` | Styling classes for table. Read more about in documentation | `null`
 sortable | `Boolean` | Is Table sortable. When True Table can be sorted after every Column | `false`
 filterFn | `(row) => Boolean` | Only Rows which return true will be shown in Table | `null`
- 
+
 ## Columns
 Each Column is represented by a Column Element inside the Table Body.
 
@@ -86,6 +82,23 @@ var YetiTable = require('yeti-table');
 ```
 
 # Documentation
+
+## Styling
+To add your own styling to table you can use the styling prop from the table component. The styling prop requires a value of type styling. The type looks like the following:
+
+```javascript
+export type Styling = {
+    tableRoot? : string
+    tableBody? : string
+    tableBodyRow? : string
+    tableBodyColumn? : string
+    tableBodyCell? : string
+    tableHeader? : string
+    tableHeaderRow? : string
+    tableHeaderColumn? : string
+    tableHeaderCell? : string
+}
+```
 
 ## Custom Column Types
 You can create custom Column Types with custom Behavior. For Example let's assume you need a Column which allways adds a red Background to the Column. The usage of this Column whould look similar to this.

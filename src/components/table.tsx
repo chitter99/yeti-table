@@ -4,17 +4,14 @@ import { SortDirection } from '../model/sort';
 import { fetchAccessor, merge } from '../util';
 import { ColumnProps } from './column';
 import { TableRoot } from './tableRoot';
+import { Styling } from '../model/styling';
 
 type TableProps = {
     children? : Array<React.ReactChild>
     data? : Array<any>
-    className? : string
-    rowClassName? : string
-    trowClassName? : string 
-    headerClassName? : string
-    bodyClassName? : string
     sortable? : boolean
     filterFn? : (row) => boolean
+    styling? : Styling
 }
 
 type TableState = {
@@ -59,12 +56,7 @@ export class Table extends React.Component<TableProps, TableState> {
 
     generateConfig() : Config {
         return {
-            styling: {
-                row: this.props.rowClassName,
-                trow: this.props.trowClassName,
-                header: this.props.headerClassName,
-                body: this.props.bodyClassName
-            },
+            styling: this.props.styling || { },
             sortable: this.props.sortable ? this.props.sortable : false
         };
     }

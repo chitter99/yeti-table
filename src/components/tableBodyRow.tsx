@@ -7,7 +7,7 @@ type TableBodyRowProps = {
 };
 
 export const TableBodyRow : React.StatelessComponent<TableBodyRowProps> = (props) => {
-    return <tr className={ props.context.config.styling.row }>
+    return <tr className={ props.context.config.styling.tableBodyRow }>
         { props.context.definitions.map((col, i) => React.createElement(col.type, { context: props.context, column: col, row: props.row, key: i})) }
     </tr>;
 };

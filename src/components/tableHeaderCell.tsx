@@ -7,5 +7,5 @@ export type TableHeaderCellProps = {
 };
 
 export const TableHeaderCell : React.StatelessComponent<TableHeaderCellProps> = (props) => {
-    return <a>{ props.column.header }</a>;
+    return <a className={ props.context.config.styling.tableHeaderCell }>{ props.column.header }</a>;
 };
