@@ -1,3 +1,4 @@
+import { TableHeaderColumnProps } from './../components/tableHeaderColumn';
 import { TableBodyColumnProps } from './../components/tableBodyColumn';
 import { FilterContext } from './filter';
 import { SortContext } from './sort';
@@ -21,6 +22,7 @@ export type Config = {
 
 export type Definition = {
     type : (props : TableBodyColumnProps) => JSX.Element
+    typeHeader : (props : TableHeaderColumnProps) => JSX.Element
     header : string
     accessor? : string
     getValue: (obj : any) => string

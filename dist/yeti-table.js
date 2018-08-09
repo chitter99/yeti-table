@@ -125,12 +125,14 @@ var __extends = undefined && undefined.__extends || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
 var tableBodyColumn_1 = __webpack_require__(/*! ./tableBodyColumn */ "./src/components/tableBodyColumn.tsx");
+var tableHeaderCell_1 = __webpack_require__(/*! ./tableHeaderCell */ "./src/components/tableHeaderCell.tsx");
 var Column = /** @class */function (_super) {
     __extends(Column, _super);
     function Column() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Column.bodyColumn = tableBodyColumn_1.TableBodyColumn;
+    Column.headerColumn = tableHeaderCell_1.TableHeaderCell;
     return Column;
 }(React.Component);
 exports.Column = Column;
@@ -186,6 +188,7 @@ var Table = /** @class */function (_super) {
                 var p_1 = child.props;
                 var def_1 = util_1.merge(p_1, {
                     type: child.type['bodyColumn'],
+                    typeHeader: child.type['headerColumn'],
                     getValue: function getValue(row) {
                         var v = row;
                         if (def_1.accessor) {
@@ -369,6 +372,24 @@ exports.TableHeader = function (props) {
                 return _onClick(def);
             } }, def.header);
     })));
+};
+
+/***/ }),
+
+/***/ "./src/components/tableHeaderCell.tsx":
+/*!********************************************!*\
+  !*** ./src/components/tableHeaderCell.tsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+exports.TableHeaderCell = function (props) {
+    return React.createElement("a", null, props.column.header);
 };
 
 /***/ }),

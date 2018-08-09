@@ -15,6 +15,7 @@ export declare type ColumnProps = {
 };
 export declare class Column extends React.Component<ColumnProps, any> {
     static bodyColumn: (props: TableBodyColumnProps) => JSX.Element;
+    static headerColumn: (props: TableHeaderColumnProps) => JSX.Element;
 }
 
 export declare type TableProps = {
@@ -72,6 +73,23 @@ export declare type TableHeaderProps = {
 };
 export declare const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
+export declare type TableHeaderCellProps = {
+    context: Context;
+    column: Definition;
+};
+export declare const TableHeaderCell: React.StatelessComponent<TableHeaderCellProps>;
+
+export declare type TableHeaderColumnProps = {
+    context: Context;
+    column: Definition;
+};
+export declare const TableBodyColumn: React.StatelessComponent<TableHeaderColumnProps>;
+
+export declare type TableHeaderRowProps = {
+    context: Context;
+};
+export declare const TableHeaderRow: React.StatelessComponent<TableHeaderRowProps>;
+
 export declare type TableRootProps = {
     context: Context;
     data?: Array<any>;
@@ -95,6 +113,7 @@ export declare type Config = {
 };
 export declare type Definition = {
     type: (props: TableBodyColumnProps) => JSX.Element;
+    typeHeader: (props: TableHeaderColumnProps) => JSX.Element;
     header: string;
     accessor?: string;
     getValue: (obj: any) => string;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { TableBodyColumn } from './tableBodyColumn';
 import { Context } from '../model/config';
 
 type TableBodyRowProps = {

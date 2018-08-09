@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Config, Definition, Context } from '../model/config';
 import { SortDirection } from '../model/sort';
 import { fetchAccessor, merge } from '../util';
-import { ColumnProps, Column } from './column';
+import { ColumnProps } from './column';
 import { TableRoot } from './tableRoot';
 
 type TableProps = {
@@ -39,6 +39,7 @@ export class Table extends React.Component<TableProps, TableState> {
                 let p = child.props as ColumnProps;
                 let def = merge(p, {
                     type: child.type['bodyColumn'],
+                    typeHeader: child.type['headerColumn'],
                     getValue: (row) => {
                         let v = row;
                         if(def.accessor) {
