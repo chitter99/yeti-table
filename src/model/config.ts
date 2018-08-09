@@ -2,6 +2,7 @@ import { TableHeaderColumnProps } from './../components/tableHeaderColumn';
 import { TableBodyColumnProps } from './../components/tableBodyColumn';
 import { FilterContext } from './filter';
 import { SortContext } from './sort';
+import { Styling } from './styling';
 
 export type Context = {
     config : Config
@@ -11,12 +12,7 @@ export type Context = {
 };
 
 export type Config = {
-    styling : {
-        row : string
-        trow : string
-        header : string
-        body : string
-    }
+    styling : Styling
     sortable : boolean
 };
 
