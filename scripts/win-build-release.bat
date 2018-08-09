@@ -16,6 +16,7 @@ copy .\dist\*.d.ts .\release\yeti-table
 copy .\package.json .\release\yeti-table
 
 cd release
+del yeti-table.tar
 tar -a -cf yeti-table.tar yeti-table\*
 cd ..
 
