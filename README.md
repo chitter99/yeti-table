@@ -133,6 +133,10 @@ export class RedColumn extends Column {
 }
 ```
 
+The result will look like this:
+
+![Example with Red Component](https://github.com/chitter99/yeti-table/blob/master/media/example-2.png?raw=true)
+
 # Planned Features
 - [ ] Responsive styling.
 - [X] Sortable with equal algorithm.
