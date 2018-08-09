@@ -1,5 +1,16 @@
 @echo off
 
+:ask_ready
+SET /P "ready=Publish to NPM and Github (yes)?"
+IF "%ready%" equ "yes" goto :ready
+exit
+
+:ready
+SET /P "version=Version (including v)?"
+
+echo Updaing version...
+npm version %version%
+
 :bulding
 echo ####################
 echo Starting build...
@@ -26,16 +37,12 @@ rmdir /s /q release\yeti-table
 echo Complete!
 echo ####################
 
-:ask_ready
-SET /P "ready=Publish to NPM and Github (yes)?"
-IF "%ready%" equ "yes" goto :publish
-exit
+echo Sure to publish?
+timeout /t 10
 
 :publish
 echo ####################
 echo Publishing...
-
-SET /P "version=Version (including v)?"
 
 echo Pushing to git...
 git add dist/*
@@ -43,7 +50,6 @@ git commit -m "%version%"
 git push
 
 echo Publish to NPM...
-npm version %version%
 npm publish release\yeti-table.tar
 
 echo Complete!
