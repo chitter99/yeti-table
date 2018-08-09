@@ -9,7 +9,7 @@ exit
 SET /P "version=Version (including v)?"
 
 echo Updaing version...
-npm version %version%
+start npm version %version%
 
 :bulding
 echo ####################
