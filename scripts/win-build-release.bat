@@ -25,6 +25,8 @@ echo Bulding...
 copy .\dist\*.js .\release\yeti-table
 copy .\dist\*.d.ts .\release\yeti-table
 copy .\package.json .\release\yeti-table
+copy .\README.md .\release\yeti-table
+copy .\LICENSE .\release\yeti-table
 
 echo Complete!
 echo ####################
