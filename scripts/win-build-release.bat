@@ -9,7 +9,7 @@ exit
 SET /P "version=Version (including v)?"
 
 echo Updaing version...
-start npm version %version%
+start /wait npm version %version%
 
 :bulding
 echo ####################
@@ -25,14 +25,6 @@ echo Bulding...
 copy .\dist\*.js .\release\yeti-table
 copy .\dist\*.d.ts .\release\yeti-table
 copy .\package.json .\release\yeti-table
-
-cd release
-del yeti-table.tar
-tar -a -cf yeti-table.tar yeti-table\*
-cd ..
-
-echo Cleanup...
-rmdir /s /q release\yeti-table
 
 echo Complete!
 echo ####################
@@ -50,7 +42,12 @@ git commit -m "%version%"
 git push
 
 echo Publish to NPM...
-npm publish release\yeti-table.tar
+npm publish release\yeti-table
 
 echo Complete!
 echo ####################
+
+echo.
+echo Cleanup...
+rmdir /s /q release\yeti-table
+rmdir /s /q release\
