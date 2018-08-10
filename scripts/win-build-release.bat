@@ -44,7 +44,7 @@ git commit -m "%version%"
 git push
 
 echo Publish to NPM...
-npm publish release\yeti-table -m "%version%"
+start /wait npm publish release\yeti-table -m "%version%"
 
 echo Complete!
 echo ####################
